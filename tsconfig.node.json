@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/node",
+    "module": "CommonJS",
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+    "karma.conf.js",
+    "tailwind.config.js",
+    "postcss.config.js"
+  ]
+}
