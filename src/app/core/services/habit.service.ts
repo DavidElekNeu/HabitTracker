@@ -11,6 +11,9 @@ export class HabitService {
   private readonly loadingSignal = signal<boolean>(false);
   private readonly errorSignal = signal<string | null>(null);
   private initialized = false;
+  private changeVersion = 0;
+  private readonly mutationVersions = new Map<number, { version: number; type: 'updated' | 'deleted' }>();
+  private readonly recentlyAddedHabitIds = new Set<number>();
 
   readonly habits = computed(() => this.habitsSignal());
   readonly isLoading = computed(() => this.loadingSignal());
@@ -31,9 +34,10 @@ export class HabitService {
   async loadHabits(): Promise<void> {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
+    const loadVersion = this.changeVersion;
     try {
       const habits = await this.db.getHabits();
-      this.habitsSignal.set(habits);
+      this.applyLoadedHabits(habits, loadVersion);
     } catch (error) {
       const message = error instanceof DBError ? error.message : 'Unknown error fetching habits';
       this.errorSignal.set(message);
@@ -49,6 +53,8 @@ export class HabitService {
       const id = await this.db.addHabit(habit);
       const timestampedHabit: Habit = { ...habit, id };
       this.habitsSignal.update((current) => [...current, timestampedHabit]);
+      this.recordMutation(id, 'updated');
+      this.recentlyAddedHabitIds.add(id);
       return timestampedHabit;
     } catch (error) {
       const message = error instanceof DBError ? error.message : 'Unknown error adding habit';
@@ -71,6 +77,9 @@ export class HabitService {
           return habit;
         })
       );
+      if (updated.id !== undefined) {
+        this.recordMutation(updated.id, 'updated');
+      }
       return updatedHabit ?? updated;
     } catch (error) {
       const message = error instanceof DBError ? error.message : 'Unknown error updating habit';
@@ -84,6 +93,8 @@ export class HabitService {
     try {
       await this.db.deleteHabit(id);
       this.habitsSignal.update((current) => current.filter((habit) => habit.id !== id));
+      this.recordMutation(id, 'deleted');
+      this.recentlyAddedHabitIds.delete(id);
     } catch (error) {
       const message = error instanceof DBError ? error.message : 'Unknown error removing habit';
       this.errorSignal.set(message);
@@ -95,7 +106,86 @@ export class HabitService {
     return this.habitsSignal().find((habit) => habit.id === id);
   }
 
+  isRecentlyAdded(id: number): boolean {
+    return this.recentlyAddedHabitIds.has(id);
+  }
+
+  acknowledgeHabit(id: number): void {
+    this.recentlyAddedHabitIds.delete(id);
+  }
+
   clearError(): void {
     this.errorSignal.set(null);
+  }
+
+  private applyLoadedHabits(habits: Habit[], loadVersion: number): void {
+    const existing = this.habitsSignal();
+    const merged: Habit[] = [];
+    const seenIds = new Set<number>();
+
+    for (const habit of habits) {
+      if (habit.id === undefined) {
+        continue;
+      }
+      const mutation = this.mutationVersions.get(habit.id);
+      if (mutation && mutation.version > loadVersion) {
+        if (mutation.type === 'deleted') {
+          continue;
+        }
+        const local = existing.find((item) => item.id === habit.id);
+        if (local) {
+          merged.push(local);
+          seenIds.add(habit.id);
+          continue;
+        }
+      }
+      // Migrate deprecated 'frequency' type to binary with schedule
+      const normalized = (habit as any).type === 'frequency' ? ({ ...habit, type: 'binary' } as Habit) : habit;
+      merged.push(normalized);
+      seenIds.add(habit.id);
+    }
+
+    for (const habit of existing) {
+      if (habit.id === undefined) {
+        merged.push(habit);
+        continue;
+      }
+      if (seenIds.has(habit.id)) {
+        continue;
+      }
+      const mutation = this.mutationVersions.get(habit.id);
+      if (mutation && mutation.type === 'deleted' && mutation.version > loadVersion) {
+        continue;
+      }
+      const normalizedExisting = (habit as any).type === 'frequency' ? ({ ...habit, type: 'binary' } as Habit) : habit;
+      merged.push(normalizedExisting);
+      seenIds.add(habit.id);
+    }
+
+    this.habitsSignal.set(merged);
+    this.pruneMutations(loadVersion);
+
+    const mergedIds = new Set(merged.filter((habit) => habit.id !== undefined).map((habit) => habit.id as number));
+    for (const id of Array.from(this.recentlyAddedHabitIds)) {
+      if (!mergedIds.has(id)) {
+        this.recentlyAddedHabitIds.delete(id);
+      }
+    }
+  }
+
+  private recordMutation(id: number | undefined, type: 'updated' | 'deleted'): void {
+    if (id === undefined) {
+      return;
+    }
+    const version = ++this.changeVersion;
+    this.mutationVersions.set(id, { version, type });
+  }
+
+  private pruneMutations(maxVersion: number): void {
+    for (const [id, mutation] of this.mutationVersions) {
+      if (mutation.version <= maxVersion) {
+        this.mutationVersions.delete(id);
+      }
+    }
   }
 }

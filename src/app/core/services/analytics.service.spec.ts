@@ -64,6 +64,17 @@ describe('AnalyticsService', () => {
     expect(result[0].label).toBeDefined();
   });
 
+  it('builds daily trends with requested length', () => {
+    const logs = [
+      createLog({ date: '2024-06-01T00:00:00Z', dayKey: '2024-06-01', value: true }),
+      createLog({ date: '2024-06-02T00:00:00Z', dayKey: '2024-06-02', value: false }),
+      createLog({ date: '2024-06-03T00:00:00Z', dayKey: '2024-06-03', value: true })
+    ];
+    const result = service.buildDailyTrend(logs, 7);
+    expect(result.length).toBe(7);
+    expect(result[0].label).toBeDefined();
+  });
+
   it('builds heatmap cells with intensity', () => {
     const logs = [
       createLog({ dayKey: '2024-05-01', value: true }),

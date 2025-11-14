@@ -1,4 +1,4 @@
-import { Habit, HabitType } from '../../data/models/habit.model';
+import { Habit } from '../../data/models/habit.model';
 import { toDayKey } from './date-utils';
 
 function isAllowedWeekday(habit: Habit, date: Date): boolean {
@@ -36,15 +36,17 @@ export function isHabitDueToday(
     return false;
   }
 
-  switch (habit.type as HabitType) {
-    case 'binary':
-    case 'quantitative':
-      return true;
-    case 'frequency':
-      return isFrequencyDue(habit, date, context.completedThisPeriod);
-    default:
-      return true;
+  // Period-based due: default 'day'. For non-daily periods, due until the period target is reached.
+  const period = habit.schedule?.frequencyPeriod ?? 'day';
+  if (period === 'day') {
+    return true;
   }
+  // Determine target for the period: binary -> 1, quantitative -> dailyTargetValue (interpreted as per-period target)
+  const target = habit.type === 'binary' ? 1 : Math.max(0, Number(habit.schedule?.dailyTargetValue ?? 0));
+  if (target <= 0) {
+    return true; // no target configured => always due
+  }
+  return context.completedThisPeriod < target;
 }
 
 export function matchesDay(logDayKey: string, date: Date | string): boolean {

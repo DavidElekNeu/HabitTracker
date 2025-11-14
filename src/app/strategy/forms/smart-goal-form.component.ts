@@ -7,7 +7,10 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
   standalone: true,
   imports: [ReactiveFormsModule, NgIf],
   template: `
-    <section class="space-y-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+    <section
+      class="space-y-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900"
+      [formGroup]="form"
+    >
       <header>
         <h3 class="text-base font-semibold">SMART goal details</h3>
         <p class="text-xs text-slate-500">
@@ -16,7 +19,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
       </header>
       <div class="grid gap-4 sm:grid-cols-2">
         <label class="flex flex-col gap-2 text-sm font-medium">
-          Target metric<span class="text-rose-500">*</span>
+          <span class="inline-flex items-center gap-1">Target metric<span class="text-rose-500">*</span></span>
           <input
             type="text"
             formControlName="targetMetric"

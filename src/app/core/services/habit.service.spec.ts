@@ -17,6 +17,16 @@ describe('HabitService', () => {
     ...overrides
   });
 
+  const createDeferred = <T>() => {
+    let resolve!: (value: T | PromiseLike<T>) => void;
+    let reject!: (reason?: unknown) => void;
+    const promise = new Promise<T>((res, rej) => {
+      resolve = res;
+      reject = rej;
+    });
+    return { promise, resolve, reject };
+  };
+
   beforeEach(() => {
     dbServiceSpy = jasmine.createSpyObj<DBService>('DBService', ['getHabits', 'addHabit', 'updateHabit', 'deleteHabit']);
 
@@ -72,5 +82,33 @@ describe('HabitService', () => {
 
     await expectAsync(service.addHabit(newHabit)).toBeRejected();
     expect(service.error()).toBe('Failed to add habit');
+  });
+
+  it('should retain locally added habits when load completes later', async () => {
+    const deferred = createDeferred<Habit[]>();
+    dbServiceSpy.getHabits.and.returnValue(deferred.promise);
+
+    const loadPromise = service.loadHabits();
+    dbServiceSpy.addHabit.and.resolveTo(5);
+
+    const newHabit = createHabit({ id: undefined, title: 'Async Habit', createdDate: new Date().toISOString() });
+    await service.addHabit(newHabit);
+    expect(service.habits().some((habit) => habit.id === 5)).toBeTrue();
+
+    deferred.resolve([]);
+    await loadPromise;
+
+    expect(service.habits().some((habit) => habit.id === 5)).toBeTrue();
+  });
+
+  it('tracks recently added habits and supports acknowledgement', async () => {
+    const newHabit = createHabit({ id: undefined, title: 'Track Me' });
+    dbServiceSpy.addHabit.and.resolveTo(7);
+
+    await service.addHabit(newHabit);
+    expect(service.isRecentlyAdded(7)).toBeTrue();
+
+    service.acknowledgeHabit(7);
+    expect(service.isRecentlyAdded(7)).toBeFalse();
   });
 });

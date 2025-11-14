@@ -1,5 +1,11 @@
-﻿import { NgClass, NgFor } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { NgClass, NgFor } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
 import { StrategyType } from '../../data/models/habit.model';
 
 interface StrategyOption {
@@ -19,22 +25,29 @@ interface StrategyOption {
       <p class="text-sm text-slate-500">
         Choose a framework to guide this habit's setup. Each option provides coaching prompts to help you define a clear plan.
       </p>
+
       <div class="grid gap-3 sm:grid-cols-2">
         <button
           type="button"
           *ngFor="let strategy of strategyOptions"
           class="rounded-2xl border p-4 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 dark:border-slate-800"
           [ngClass]="{
-            'border-primary bg-primary/5 shadow-sm dark:bg-primary/10': selected() === strategy.type,
+            'border-primary bg-primary/5 shadow-sm dark:bg-primary/10':
+              selected === strategy.type,
             'border-slate-200 bg-white hover:border-primary hover:shadow dark:bg-slate-900':
-              selected() !== strategy.type
+              selected !== strategy.type
           }"
           (click)="onSelect(strategy.type)"
-          [attr.aria-pressed]="selected() === strategy.type"
+          [attr.aria-pressed]="selected === strategy.type"
         >
           <p class="text-sm font-semibold text-primary">{{ strategy.title }}</p>
-          <p class="mt-1 text-xs text-slate-500 dark:text-slate-300">{{ strategy.description }}</p>
-          <p *ngIf="strategy.subtitle" class="mt-2 text-[11px] uppercase tracking-wide text-slate-400">
+          <p class="mt-1 text-xs text-slate-500 dark:text-slate-300">
+            {{ strategy.description }}
+          </p>
+          <p
+            *ngIf="strategy.subtitle"
+            class="mt-2 text-[11px] uppercase tracking-wide text-slate-400"
+          >
             {{ strategy.subtitle }}
           </p>
         </button>
@@ -44,13 +57,8 @@ interface StrategyOption {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StrategySelectorComponent {
-  private readonly selectedSignal = signal<StrategyType>('NONE');
-  readonly selected = this.selectedSignal.asReadonly();
-
-  @Input('selected')
-  set selectedStrategy(value: StrategyType) {
-    this.selectedSignal.set(value ?? 'NONE');
-  }
+  // 👇 Single source of truth from parent
+  @Input() selected: StrategyType = 'NONE';
 
   @Output() selectStrategy = new EventEmitter<StrategyType>();
 
@@ -58,38 +66,47 @@ export class StrategySelectorComponent {
     {
       type: 'SMART',
       title: 'SMART Goal',
-      description: 'Clarify what success looks like with measurable targets and a timeline.',
-      subtitle: 'Specific - Measurable - Achievable - Relevant - Time-bound'
+      description:
+        'Clarify what success looks like with measurable targets and a timeline.',
+      subtitle:
+        'Specific - Measurable - Achievable - Relevant - Time-bound'
     },
     {
       type: 'WOOP',
       title: 'WOOP Plan',
-      description: 'Visualize your Wish, Outcome, Obstacles, and if-then Plan to stay resilient.'
+      description:
+        'Visualize your Wish, Outcome, Obstacles, and if-then Plan to stay resilient.'
     },
     {
       type: 'TINY',
       title: 'Tiny Habit',
-      description: 'Anchor a tiny version of your habit to an existing routine for easy wins.'
+      description:
+        'Anchor a tiny version of your habit to an existing routine for easy wins.'
     },
     {
       type: 'GOAL_COMPASS',
       title: 'Goal Compass',
-      description: 'Capture the deeper "why" and the next bold step toward your vision.'
+      description:
+        'Capture the deeper "why" and the next bold step toward your vision.'
     },
     {
       type: 'OKR',
       title: 'OKR Snapshot',
-      description: 'Connect daily habits to a larger Objective and measurable Key Result.'
+      description:
+        'Connect daily habits to a larger Objective and measurable Key Result.'
     },
     {
       type: 'NONE',
       title: 'Track only',
-      description: 'Skip structured frameworks and just log progress.'
+      description:
+        'Skip structured frameworks and just log progress.'
     }
   ];
 
   onSelect(strategy: StrategyType): void {
-    this.selectedSignal.set(strategy);
-    this.selectStrategy.emit(strategy);
+    // don't locally mutate anything, just tell the parent
+    if (strategy !== this.selected) {
+      this.selectStrategy.emit(strategy);
+    }
   }
 }

@@ -17,7 +17,16 @@ export class DBService {
 
   async getHabits(): Promise<Habit[]> {
     try {
-      return await firstValueFrom(this.db.getAll<Habit>(this.habitStore));
+      const rows = await firstValueFrom(this.db.getAll<Habit>(this.habitStore));
+      return rows.map((h: any) => {
+        if (h && (typeof h.id === "string" || typeof h.id === "number")) {
+          const n = Number(h.id);
+          if (Number.isFinite(n)) {
+            return { ...h, id: n } as Habit;
+          }
+        }
+        return h as Habit;
+      });
     } catch (error) {
       throw new DBError('Failed to fetch habits from IndexedDB', error);
     }
@@ -26,7 +35,31 @@ export class DBService {
   async addHabit(habit: Habit): Promise<number> {
     try {
       const result = await firstValueFrom(this.db.add(this.habitStore, habit));
-      return typeof result === 'number' ? result : (result as unknown as { key: number }).key;
+      if (typeof result === "number") {
+  return result;
+}
+if (typeof result === "string") {
+  const n = Number(result);
+  if (Number.isFinite(n)) {
+    return n;
+  }
+}
+if (result && typeof result === "object") {
+  const anyr: any = result as any;
+  if (typeof anyr.key === "number" || typeof anyr.key === "string") {
+    const n = Number( anyr.key );
+    if (Number.isFinite(n)) {
+      return n;
+    }
+  }
+  if (typeof anyr.id === "number" || typeof anyr.id === "string") {
+    const n = Number( anyr.id );
+    if (Number.isFinite(n)) {
+      return n;
+    }
+  }
+}
+throw new DBError('IndexedDB add(habits) returned unknown key shape');
     } catch (error) {
       throw new DBError('Failed to add habit to IndexedDB', error);
     }
@@ -42,7 +75,7 @@ export class DBService {
 
   async deleteHabit(id: number): Promise<void> {
     try {
-      await this.db.delete(this.habitStore, id);
+      await firstValueFrom(this.db.delete(this.habitStore, id));
     } catch (error) {
       throw new DBError('Failed to delete habit from IndexedDB', error);
     }
@@ -95,7 +128,31 @@ export class DBService {
   async addLog(log: HabitLog): Promise<number> {
     try {
       const result = await firstValueFrom(this.db.add(this.logStore, log));
-      return typeof result === 'number' ? result : (result as unknown as { key: number }).key;
+      if (typeof result === "number") {
+  return result;
+}
+if (typeof result === "string") {
+  const n = Number(result);
+  if (Number.isFinite(n)) {
+    return n;
+  }
+}
+if (result && typeof result === "object") {
+  const anyr: any = result as any;
+  if (typeof anyr.key === "number" || typeof anyr.key === "string") {
+    const n = Number( anyr.key );
+    if (Number.isFinite(n)) {
+      return n;
+    }
+  }
+  if (typeof anyr.id === "number" || typeof anyr.id === "string") {
+    const n = Number( anyr.id );
+    if (Number.isFinite(n)) {
+      return n;
+    }
+  }
+}
+throw new DBError('IndexedDB add(habits) returned unknown key shape');
     } catch (error) {
       throw new DBError('Failed to add log entry to IndexedDB', error);
     }
@@ -111,7 +168,7 @@ export class DBService {
 
   async deleteLog(id: number): Promise<void> {
     try {
-      await this.db.delete(this.logStore, id);
+      await firstValueFrom(this.db.delete(this.logStore, id));
     } catch (error) {
       throw new DBError('Failed to delete log entry from IndexedDB', error);
     }
@@ -150,3 +207,5 @@ export class DBService {
     }
   }
 }
+
+

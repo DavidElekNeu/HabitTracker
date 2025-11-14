@@ -6,7 +6,10 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
   standalone: true,
   imports: [ReactiveFormsModule],
   template: `
-    <section class="space-y-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+    <section
+      class="space-y-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900"
+      [formGroup]="form"
+    >
       <header>
         <h3 class="text-base font-semibold">Tiny habit recipe</h3>
         <p class="text-xs text-slate-500">

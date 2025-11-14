@@ -1,5 +1,5 @@
-import { NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
+import { NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault, NgClass } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
@@ -15,7 +15,6 @@ import {
 } from '../../data/models/habit.model';
 import { HabitService } from '../../core/services/habit.service';
 import { ReminderService } from '../../core/services/reminder.service';
-import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component';
 import { StrategySelectorComponent } from '../../strategy/strategy-selector/strategy-selector.component';
 import { SmartGoalFormComponent } from '../../strategy/forms/smart-goal-form.component';
 import { WoopFormComponent } from '../../strategy/forms/woop-form.component';
@@ -28,7 +27,6 @@ import { OkrFormComponent } from '../../strategy/forms/okr-form.component';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    PageHeaderComponent,
     StrategySelectorComponent,
     SmartGoalFormComponent,
     WoopFormComponent,
@@ -38,20 +36,17 @@ import { OkrFormComponent } from '../../strategy/forms/okr-form.component';
     NgIf,
     NgSwitch,
     NgSwitchCase,
-    NgSwitchDefault
+    NgSwitchDefault,
+    NgClass
   ],
   template: `
     <section class="mx-auto max-w-3xl space-y-6">
-      <app-page-header
-        title="Create habit"
-        subtitle="Define success, cadence, and the strategy that keeps you consistent."
-        eyebrow="Builder"
-      />
+      
 
       <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-6">
         <div class="grid gap-4 sm:grid-cols-2">
           <label class="flex flex-col gap-2 text-sm font-medium">
-            Title<span class="text-rose-500">*</span>
+            <span class="inline-flex items-center gap-1">Title<span class="text-rose-500">*</span></span>
             <input
               type="text"
               formControlName="title"
@@ -63,21 +58,65 @@ import { OkrFormComponent } from '../../strategy/forms/okr-form.component';
             </span>
           </label>
 
-          <label class="flex flex-col gap-2 text-sm font-medium">
-            Type<span class="text-rose-500">*</span>
-            <select
-              formControlName="type"
-              class="rounded-xl border border-slate-200 px-4 py-2 text-base shadow-sm focus:border-primary focus:outline-none dark:border-slate-700 dark:bg-slate-900"
-            >
-              <option value="binary">Yes / No</option>
-              <option value="quantitative">Quantitative</option>
-              <option value="frequency">Frequency per week</option>
-            </select>
-          </label>
+          <div class="flex flex-col gap-2 text-sm font-medium">
+            <span class="inline-flex items-center gap-1">Type<span class="text-rose-500">*</span></span>
+            <div class="grid grid-cols-2 overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700">
+              <button
+                type="button"
+                class="w-full px-3 py-2 text-center text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                [ngClass]="form.controls.type.value === 'binary' ? 'border-primary bg-primary/10 text-primary' : 'hover:bg-slate-50 dark:hover:bg-slate-800'"
+                (click)="setHabitType('binary')"
+                [attr.aria-pressed]="form.controls.type.value === 'binary'"
+              >
+                Binary
+              </button>
+              <button
+                type="button"
+                class="w-full border-l border-slate-200 px-3 py-2 text-center text-sm font-semibold transition dark:border-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                [ngClass]="form.controls.type.value === 'quantitative' ? 'border-primary bg-primary/10 text-primary' : 'hover:bg-slate-50 dark:hover:bg-slate-800'"
+                (click)="setHabitType('quantitative')"
+                [attr.aria-pressed]="form.controls.type.value === 'quantitative'"
+              >
+                Quantitative
+              </button>
+            </div>
+          </div>
 
-          <p class="sm:col-span-2 text-xs text-slate-500 dark:text-slate-400">
-            Binary works for checklists ("Did I meditate?"), quantitative tracks counts or minutes, and frequency suits "3 times per week" rituals.
-          </p>
+          
+
+          <div class="sm:col-span-2 flex flex-col gap-2 text-sm font-medium">
+            <span class="inline-flex items-center gap-1">Goal period</span>
+            <div class="grid grid-cols-3 overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700">
+              <button
+                type="button"
+                class="w-full px-3 py-2 text-center text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                [ngClass]="(form.controls.frequencyPeriod.value ?? 'day') === 'day' ? 'border-primary bg-primary/10 text-primary' : 'hover:bg-slate-50 dark:hover:bg-slate-800'"
+                (click)="setGoalPeriod('day')"
+                [attr.aria-pressed]="(form.controls.frequencyPeriod.value ?? 'day') === 'day'"
+              >
+                Day
+              </button>
+              <button
+                type="button"
+                class="w-full border-l border-slate-200 px-3 py-2 text-center text-sm font-semibold transition dark:border-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                [ngClass]="form.controls.frequencyPeriod.value === 'week' ? 'border-primary bg-primary/10 text-primary' : 'hover:bg-slate-50 dark:hover:bg-slate-800'"
+                (click)="setGoalPeriod('week')"
+                [attr.aria-pressed]="form.controls.frequencyPeriod.value === 'week'"
+              >
+                Week
+              </button>
+              <button
+                type="button"
+                class="w-full border-l border-slate-200 px-3 py-2 text-center text-sm font-semibold transition dark:border-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                [ngClass]="form.controls.frequencyPeriod.value === 'month' ? 'border-primary bg-primary/10 text-primary' : 'hover:bg-slate-50 dark:hover:bg-slate-800'"
+                (click)="setGoalPeriod('month')"
+                [attr.aria-pressed]="form.controls.frequencyPeriod.value === 'month'"
+              >
+                Month
+              </button>
+            </div>
+            
+          </div>
 
           <label class="sm:col-span-2 flex flex-col gap-2 text-sm font-medium">
             Description
@@ -200,9 +239,9 @@ import { OkrFormComponent } from '../../strategy/forms/okr-form.component';
           </div>
         </div>
 
-        <app-strategy-selector [selected]="selectedStrategy" (selectStrategy)="onStrategySelected($event)"></app-strategy-selector>
+        <app-strategy-selector [selected]="selectedStrategy()" (selectStrategy)="onStrategySelected($event)"></app-strategy-selector>
 
-        <div [ngSwitch]="selectedStrategy">
+        <div [ngSwitch]="selectedStrategy()">
           <app-smart-goal-form *ngSwitchCase="'SMART'" [form]="smartForm"></app-smart-goal-form>
           <app-woop-form *ngSwitchCase="'WOOP'" [form]="woopForm"></app-woop-form>
           <app-tiny-habit-form *ngSwitchCase="'TINY'" [form]="tinyForm"></app-tiny-habit-form>
@@ -213,15 +252,7 @@ import { OkrFormComponent } from '../../strategy/forms/okr-form.component';
           </div>
         </div>
 
-        <label *ngIf="selectedStrategy !== 'NONE'" class="flex flex-col gap-2 text-sm font-medium">
-          Coaching notes
-          <textarea
-            formControlName="strategyNotes"
-            rows="3"
-            placeholder="Add reminders or context you want surfaced later."
-            class="rounded-xl border border-slate-200 px-4 py-2 text-base shadow-sm focus:border-primary focus:outline-none dark:border-slate-700 dark:bg-slate-900"
-          ></textarea>
-        </label>
+        
 
         <div class="flex items-center justify-end gap-3">
           <button
@@ -249,7 +280,8 @@ export class HabitFormComponent {
   private readonly habitService = inject(HabitService);
   private readonly reminderService = inject(ReminderService);
   private readonly router = inject(Router);
-  private readonly cdr = inject(ChangeDetectorRef);
+  private readonly selectedStrategySignal = signal<StrategyType>('NONE');
+  readonly selectedStrategy = this.selectedStrategySignal.asReadonly();
 
   readonly form = this.fb.group({
     title: ['', Validators.required],
@@ -305,7 +337,6 @@ export class HabitFormComponent {
     timeframe: ['']
   });
 
-  selectedStrategy: StrategyType = 'NONE';
 
   readonly dayOptions = [
     { value: 0, label: 'Sun' },
@@ -328,7 +359,7 @@ export class HabitFormComponent {
       return;
     }
 
-    const type = this.selectedStrategy;
+    const type = this.selectedStrategySignal();
     let strategy: HabitStrategy | undefined;
     const notes = this.form.controls.strategyNotes.value?.trim() || undefined;
 
@@ -387,6 +418,9 @@ export class HabitFormComponent {
       schedule.frequencyPeriod = (value.frequencyPeriod ?? 'week') as HabitSchedule['frequencyPeriod'];
     }
 
+    // Optional goal period (applies to any habit type). Default to 'day'.
+    schedule.frequencyPeriod = (value.frequencyPeriod ?? 'day') as HabitSchedule['frequencyPeriod'];
+
     const reminderConfig =
       value.enableReminder
         ? {
@@ -426,10 +460,17 @@ export class HabitFormComponent {
     void this.router.navigate(['/habits']);
   }
 
+  setHabitType(type: 'binary' | 'quantitative'): void {
+    this.form.controls.type.setValue(type);
+  }
+
+  setGoalPeriod(period: 'day' | 'week' | 'month'): void {
+    this.form.controls.frequencyPeriod.setValue(period);
+  }
+
   onStrategySelected(strategy: StrategyType): void {
-    this.selectedStrategy = strategy;
+    this.selectedStrategySignal.set(strategy);
     this.form.controls.strategyType.setValue(strategy);
-    this.cdr.markForCheck();
   }
 
   onReminderPresetChange(): void {
