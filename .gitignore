@@ -53,3 +53,25 @@ temp/
 cypress/screenshots/
 cypress/videos/
 cypress/downloads/
+
+# ---- Gradle / Kotlin build outputs & caches ----
+.gradle/
+.gradle-user-home/
+.kotlin/
+build/
+
+# ---- Android generated / local files ----
+local.properties
+.externalNativeBuild/
+.cxx/
+captures/
+*.apk
+*.aab
+*.ap_
+*.dex
+*.hprof
+
+# ---- Android signing secrets ----
+*.jks
+*.keystore
+keystore.properties

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_quickadd_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/striveup_widget_bg"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/widget_quickadd_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quick add"
+        android:textColor="#FFFFFFFF"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/widget_quickadd_row1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="56dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/widget_action_pill"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/widget_quickadd_title1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Habit"
+                android:textColor="#FFFFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/widget_quickadd_value1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0/0"
+                android:textColor="#E6FFFFFF"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/widget_quickadd_plus1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/widget_action_pill"
+            android:gravity="center"
+            android:minWidth="44dp"
+            android:minHeight="44dp"
+            android:paddingLeft="12dp"
+            android:paddingTop="8dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="8dp"
+            android:text="+1"
+            android:textColor="#FFFFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/widget_quickadd_row2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="56dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/widget_action_pill"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/widget_quickadd_title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Habit"
+                android:textColor="#FFFFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/widget_quickadd_value2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0/0"
+                android:textColor="#E6FFFFFF"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/widget_quickadd_plus2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/widget_action_pill"
+            android:gravity="center"
+            android:minWidth="44dp"
+            android:minHeight="44dp"
+            android:paddingLeft="12dp"
+            android:paddingTop="8dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="8dp"
+            android:text="+1"
+            android:textColor="#FFFFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

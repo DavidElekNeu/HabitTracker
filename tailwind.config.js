@@ -6,14 +6,15 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#6366f1',
-          light: '#a5b4fc',
-          dark: '#4338ca'
+          DEFAULT: '#d4a017',
+          light: '#f4c867',
+          dark: '#8d6d0b'
         },
         surface: {
           DEFAULT: 'var(--surface-light)',
           dark: 'var(--surface-dark)'
-        }
+        },
+        white: '#f8f2df'
       },
       animation: {
         fade: 'fade 0.2s ease-in-out',

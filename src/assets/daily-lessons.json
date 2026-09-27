@@ -1,0 +1,962 @@
+[
+  {
+    "day": 1,
+    "title": "Sürgős és fontos",
+    "topic": "prioritás",
+    "body": "Egy határidő önmagában kevés a sorrendhez. Három mai teendődnél külön jelöld, mennyire sürgős és mennyire fontos.",
+    "sourceLabel": "Szerzői cikk: döntési mátrixok",
+    "sourceUrl": "https://park.szamlazz.hu/udv-a-matrixban-valsagallo-eszkozok-a-hatekonysagod-drasztikus-novelesere/"
+  },
+  {
+    "day": 2,
+    "title": "Elfoglaltság vagy haladás?",
+    "topic": "halogatás",
+    "body": "A sürgölődés is lehet kerülőút. Ha ma apróságokba menekülsz, nevezd meg, melyik feladatot kerülöd, és kezdj bele.",
+    "sourceLabel": "Halogatás",
+    "sourceUrl": "https://erdelyiboroka.hu/2017/04/20/33-tipp-halogatas-ellen/"
+  },
+  {
+    "day": 3,
+    "title": "Iránytű: mi fontos neked?",
+    "topic": "önismeret",
+    "body": "A saját értékeid segítenek irányt választani. Írj le három számodra fontos dolgot, és válassz egy mai tettet, amely az egyiket szolgálja.",
+    "sourceLabel": "Képmás-interjú",
+    "sourceUrl": "https://kepmas.hu/hu/hatekony-idogazdalkodas-erdelyi-boroka-idobeosztas-onismeret-multitasking-hatranyai-uj-szokasok-kialakitasa"
+  },
+  {
+    "day": 4,
+    "title": "Három fokozat elég",
+    "topic": "döntés",
+    "body": "A rangsor nem kíván tizedesjegyeket. Ma jelöld három teendő ráfordítását és várható hasznát alacsony, közepes vagy magas értékkel.",
+    "sourceLabel": "Ráfordítás",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/10/13/erofeszites-hatas-priorizalas-ket-dimenzioban/"
+  },
+  {
+    "day": 5,
+    "title": "A csendes, fontos feladat",
+    "topic": "tervezés",
+    "body": "A megelőzés könnyen háttérbe szorul. Válassz egy fontos, még nem sürgős karbantartási vagy tanulási feladatot, és tervezd be.",
+    "sourceLabel": "Szerzői cikk: döntési mátrixok",
+    "sourceUrl": "https://park.szamlazz.hu/udv-a-matrixban-valsagallo-eszkozok-a-hatekonysagod-drasztikus-novelesere/"
+  },
+  {
+    "day": 6,
+    "title": "Három oszlop, tisztább kép",
+    "topic": "vizualizálás",
+    "body": "Tedd láthatóvá a munkát. Rajzolj három oszlopot: várakozik, folyamatban, kész; helyezd el bennük a mai feladataidat.",
+    "sourceLabel": "Kanban",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/11/24/personal-kanban-egy-mernoki-modszer-a-szemelyes-hatekonysag-szolgalataban/"
+  },
+  {
+    "day": 7,
+    "title": "Erőfeszítés és hatás",
+    "topic": "döntés",
+    "body": "Két hasznos ötlet között is kellhet választani. Becsüld meg mindkettő időigényét és várható hasznát, majd dönts tudatosan.",
+    "sourceLabel": "Szerzői cikk: döntési mátrixok",
+    "sourceUrl": "https://park.szamlazz.hu/udv-a-matrixban-valsagallo-eszkozok-a-hatekonysagod-drasztikus-novelesere/"
+  },
+  {
+    "day": 8,
+    "title": "Meddig maradsz valóban jelen?",
+    "topic": "figyelem",
+    "body": "A figyelem ritmusa egyéni. Figyeld meg, mennyi munka után kalandozol el, és ehhez igazítsd a következő blokkot.",
+    "sourceLabel": "Femina-interjú",
+    "sourceUrl": "https://femina.hu/otthon/idogazdalkodas-a-mindennapokban/"
+  },
+  {
+    "day": 9,
+    "title": "Találd meg a miértedet",
+    "topic": "cél",
+    "body": "A célod mögötti személyes ok segít elköteleződni. Fejezd be ezt a mondatot: ezt azért szeretném elérni, mert…",
+    "sourceLabel": "Libertine-interjú",
+    "sourceUrl": "https://libertinekonyvesbolt.hu/erdelyi-boroka-mindenkit-ova-intek-attol-hogy-januar-1-jetol-drasztikusan-valtoztasson-az-eleten-1617135"
+  },
+  {
+    "day": 10,
+    "title": "Becsülj részenként",
+    "topic": "időbecslés",
+    "body": "Egy nagy feladat ideje nehezen belátható. Bontsd ma előkészítésre, elvégzésre és lezárásra, majd külön becsüld meg ezeket.",
+    "sourceLabel": "Időbecslés",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/02/24/idobecsles/"
+  },
+  {
+    "day": 11,
+    "title": "Próbáld ki kicsiben",
+    "topic": "kísérlet",
+    "body": "Egy ötlet értékét kipróbálással is felmérheted. Tervezd meg a legkisebb kísérletet, és előre írd le, miből látod, bevált-e.",
+    "sourceLabel": "Szerzői cikk: döntési mátrixok",
+    "sourceUrl": "https://park.szamlazz.hu/udv-a-matrixban-valsagallo-eszkozok-a-hatekonysagod-drasztikus-novelesere/"
+  },
+  {
+    "day": 12,
+    "title": "Időkeret próbaként",
+    "topic": "figyelem",
+    "body": "Próbálj ma egy 25 perces munkaszakaszt, majd 5 perc szünetet. Utána döntsd el, illik-e hozzád ez a ritmus.",
+    "sourceLabel": "Pomodoro",
+    "sourceUrl": "https://erdelyiboroka.hu/2018/06/14/a-3-legegyszerubb-modszer-hogy-hatekonyabb-legy/"
+  },
+  {
+    "day": 13,
+    "title": "Tervezz a belátható szakaszra",
+    "topic": "rugalmasság",
+    "body": "Bizonytalanságban segíthet a rövidebb tervezési táv. Dolgozd ki a következő hetet, a távolabbi bizonytalan részleteket hagyd nyitva.",
+    "sourceLabel": "Szerzői cikk: döntési mátrixok",
+    "sourceUrl": "https://park.szamlazz.hu/udv-a-matrixban-valsagallo-eszkozok-a-hatekonysagod-drasztikus-novelesere/"
+  },
+  {
+    "day": 14,
+    "title": "Próba és ellenőrzés",
+    "topic": "kísérlet",
+    "body": "A változtatás eredménye nem magától látszik. Egy apró javítás előtt írd le a várt hatást, utána ellenőrizd, megjelent-e.",
+    "sourceLabel": "Kaizen",
+    "sourceUrl": "https://erdelyiboroka.hu/2021/06/24/kaizen-folyamatos-fejlodes-apro-lepesekben/"
+  },
+  {
+    "day": 15,
+    "title": "Tedd konkréttá a célt",
+    "topic": "cél",
+    "body": "A világosan megfogalmazott célt könnyebb követni. Írd le, mit szeretnél elérni, miből látod majd a teljesülését, és mikorra reális megvalósítanod.",
+    "sourceLabel": "Könyvrecenzió",
+    "sourceUrl": "https://index.hu/kultur/2024/05/14/elet-cel-ido-erdelyi-boroka-konyv-idogazdalkodas-libertine-recenzio/"
+  },
+  {
+    "day": 16,
+    "title": "Készíts elő egy mini elvonulást",
+    "topic": "elmélyülés",
+    "body": "Egy nagyobb lezáráshoz hosszabb csend kellhet. Tervezz egy zavartalan időszakot, és előtte rendezd a szükséges elérhetőséget és teendőket.",
+    "sourceLabel": "Fókuszstílusok",
+    "sourceUrl": "https://erdelyiboroka.hu/2023/02/02/a-fokuszalt-munka-negy-modja/"
+  },
+  {
+    "day": 17,
+    "title": "Megéri ez a ráfordítás?",
+    "topic": "egyszerűsítés",
+    "body": "A sok munkát igénylő, kevés hasznot adó teendő felülvizsgálható. Keress egy ilyet, és döntsd el, egyszerűsíthető-e vagy elhagyható-e.",
+    "sourceLabel": "Szerzői cikk: döntési mátrixok",
+    "sourceUrl": "https://park.szamlazz.hu/udv-a-matrixban-valsagallo-eszkozok-a-hatekonysagod-drasztikus-novelesere/"
+  },
+  {
+    "day": 18,
+    "title": "Kezdődjön egy vázlattal",
+    "topic": "tökéletességigény",
+    "body": "Az első változatnak lehetnek hibái. Ma írj egy szándékosan nyers vázlatot; a javítást hagyd a következő körre.",
+    "sourceLabel": "Halogatás",
+    "sourceUrl": "https://erdelyiboroka.hu/2017/04/20/33-tipp-halogatas-ellen/"
+  },
+  {
+    "day": 19,
+    "title": "Legyen gyors a rögzítés",
+    "topic": "információ",
+    "body": "A felbukkanó teendőnek legyen könnyen elérhető helye. Jelölj ki egy gyűjtőjegyzetet, és ma oda írd a menet közben érkező feladatokat.",
+    "sourceLabel": "Szerzői cikk: információkezelés",
+    "sourceUrl": "https://park.szamlazz.hu/digitalis-vagy-analog-igy-valassz-eszkozt-a-hatekony-informaciokezeleshez/"
+  },
+  {
+    "day": 20,
+    "title": "A megkönnyebbülés is érték",
+    "topic": "tehermentesítés",
+    "body": "Egy lezárás mentális terhet is levehet. Válassz ma egy régóta nyomasztó, rövid ügyet, és rendezd el.",
+    "sourceLabel": "Ráfordítás",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/10/13/erofeszites-hatas-priorizalas-ket-dimenzioban/"
+  },
+  {
+    "day": 21,
+    "title": "Kösd össze a célt a mai nappal",
+    "topic": "tervezés",
+    "body": "A nagy célhoz köztes állomások vezetnek. Írd le a következő mérföldkövet és azt az egy lépést, amelyet ma megtehetsz érte.",
+    "sourceLabel": "Könyvrecenzió",
+    "sourceUrl": "https://index.hu/kultur/2024/05/14/elet-cel-ido-erdelyi-boroka-konyv-idogazdalkodas-libertine-recenzio/"
+  },
+  {
+    "day": 22,
+    "title": "Szabj határt a megkezdett munkának",
+    "topic": "kapacitás",
+    "body": "A sok megkezdett ügy szétforgácsolhat. Válassz kipróbálható felső határt a párhuzamos feladatoknak, és ma tartsd magad hozzá.",
+    "sourceLabel": "Kanban",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/11/24/personal-kanban-egy-mernoki-modszer-a-szemelyes-hatekonysag-szolgalataban/"
+  },
+  {
+    "day": 23,
+    "title": "Dolgozd fel a jegyzeteidet",
+    "topic": "információ",
+    "body": "Az elmentett információ még feldolgozásra várhat. Nézz át öt jegyzetet, és tedd a teendőket, időpontokat, háttéranyagokat a megfelelő helyre.",
+    "sourceLabel": "Szerzői cikk: információkezelés",
+    "sourceUrl": "https://park.szamlazz.hu/digitalis-vagy-analog-igy-valassz-eszkozt-a-hatekony-informaciokezeleshez/"
+  },
+  {
+    "day": 24,
+    "title": "A csendhez válassz feladatot",
+    "topic": "környezet",
+    "body": "A körülmények is alakítják a feladatsorrendet. Ha most csend van, válassz koncentrációt igénylő munkát; a rutint hagyd zajosabb időre.",
+    "sourceLabel": "Femina-interjú",
+    "sourceUrl": "https://femina.hu/otthon/idogazdalkodas-a-mindennapokban/"
+  },
+  {
+    "day": 25,
+    "title": "Tedd a feladathoz az anyagát",
+    "topic": "előkészítés",
+    "body": "A keresgélést előre is csökkentheted. Egy közelgő teendő mellé csatold a szükséges dokumentumot, linket vagy elérhetőséget.",
+    "sourceLabel": "Szerzői cikk: információkezelés",
+    "sourceUrl": "https://park.szamlazz.hu/digitalis-vagy-analog-igy-valassz-eszkozt-a-hatekony-informaciokezeleshez/"
+  },
+  {
+    "day": 26,
+    "title": "Mi mire vár?",
+    "topic": "függőségek",
+    "body": "A saját munkád más lépéstől is függhet. Jelöld be egy tervedben, mit nem kezdhetsz el egy válasz vagy előfeltétel nélkül.",
+    "sourceLabel": "Időbecslés",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/02/24/idobecsles/"
+  },
+  {
+    "day": 27,
+    "title": "Készíts rövid akciótervet",
+    "topic": "tervezés",
+    "body": "A leírt terv megmutatja, hogyan indulj el. Egy lapra kerüljön a célod, három következő teendő és az első lépés időpontja.",
+    "sourceLabel": "Könyvrecenzió",
+    "sourceUrl": "https://index.hu/kultur/2024/05/14/elet-cel-ido-erdelyi-boroka-konyv-idogazdalkodas-libertine-recenzio/"
+  },
+  {
+    "day": 28,
+    "title": "Előtte és utána",
+    "topic": "mérés",
+    "body": "A benyomás mellé adat is kerülhet. Mérd meg egy rutin idejét változtatás előtt és után, és hasonlítsd össze.",
+    "sourceLabel": "Kaizen",
+    "sourceUrl": "https://erdelyiboroka.hu/2021/06/24/kaizen-folyamatos-fejlodes-apro-lepesekben/"
+  },
+  {
+    "day": 29,
+    "title": "Vissza is találod?",
+    "topic": "információ",
+    "body": "A rendezés célja a könnyű visszakeresés. Keress meg egy fontos anyagot, és ha nehéz volt, adj neki egyértelműbb nevet.",
+    "sourceLabel": "Szerzői cikk: információkezelés",
+    "sourceUrl": "https://park.szamlazz.hu/digitalis-vagy-analog-igy-valassz-eszkozt-a-hatekony-informaciokezeleshez/"
+  },
+  {
+    "day": 30,
+    "title": "Mit készítesz el ebben a körben?",
+    "topic": "célkitűzés",
+    "body": "Az időzítő mellé irány kell. Indítás előtt nevezd meg az eredményt, amelyen a következő munkaszakaszban dolgozol.",
+    "sourceLabel": "Pomodoro",
+    "sourceUrl": "https://erdelyiboroka.hu/2018/06/14/a-3-legegyszerubb-modszer-hogy-hatekonyabb-legy/"
+  },
+  {
+    "day": 31,
+    "title": "Időpont vagy teendő?",
+    "topic": "tervezés",
+    "body": "Különböző információknak különböző hely kellhet. Nézd át a friss jegyzeteidet: melyik naptári esemény, melyik elvégzendő feladat?",
+    "sourceLabel": "Szerzői cikk: információkezelés",
+    "sourceUrl": "https://park.szamlazz.hu/digitalis-vagy-analog-igy-valassz-eszkozt-a-hatekony-informaciokezeleshez/"
+  },
+  {
+    "day": 32,
+    "title": "Külön nap a fontos projektnek",
+    "topic": "heti ritmus",
+    "body": "Ha a körülményeid engedik, különíts el egy napot egyetlen nagy projektre. A kisebb ügyeknek adj helyet máskor.",
+    "sourceLabel": "Fókuszstílusok",
+    "sourceUrl": "https://erdelyiboroka.hu/2023/02/02/a-fokuszalt-munka-negy-modja/"
+  },
+  {
+    "day": 33,
+    "title": "Készülj az akadályra",
+    "topic": "előkészítés",
+    "body": "A megvalósításhoz a körülményeket is alakíthatod. Nevezz meg egy várható akadályt, majd írj mellé egy megoldást vagy elérhető segítséget.",
+    "sourceLabel": "Forbes-interjú",
+    "sourceUrl": "https://www.forbes.hu/legyel-jobb/idogazdalkodas-hatekonysagmenedzsment-konyv-onfejlesztes-erdelyi-boroka/"
+  },
+  {
+    "day": 34,
+    "title": "Kis jutalom a végén",
+    "topic": "motiváció",
+    "body": "Egy kellemes lezárás segíthet nekikezdeni. Egy halogatott ügy elé írd oda, milyen apró örömmel ünnepled majd a befejezését.",
+    "sourceLabel": "Halogatás",
+    "sourceUrl": "https://erdelyiboroka.hu/2017/04/20/33-tipp-halogatas-ellen/"
+  },
+  {
+    "day": 35,
+    "title": "Mire kell az eszközöd?",
+    "topic": "eszközválasztás",
+    "body": "Az eszközválasztást a valódi igényeid vezessék. Írd le a három funkciót, amelyre tényleg szükséged van a feladatkezeléshez.",
+    "sourceLabel": "Szerzői cikk: információkezelés",
+    "sourceUrl": "https://park.szamlazz.hu/digitalis-vagy-analog-igy-valassz-eszkozt-a-hatekony-informaciokezeleshez/"
+  },
+  {
+    "day": 36,
+    "title": "Apró ügyek egy csomagban",
+    "topic": "szervezés",
+    "body": "A szükséges apróságok szétszóródhatnak. Gyűjts össze néhány hasonló rutinfeladatot, és intézd őket egy közös időablakban.",
+    "sourceLabel": "Ráfordítás",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/10/13/erofeszites-hatas-priorizalas-ket-dimenzioban/"
+  },
+  {
+    "day": 37,
+    "title": "Egyszerűsítsd a rendszeredet",
+    "topic": "egyszerűsítés",
+    "body": "A túl sok beállítás plusz munkává válhat. Válassz ki egy felesleges címkét vagy rendszerezési lépést, és egyszerűsíts rajta.",
+    "sourceLabel": "Szerzői cikk: információkezelés",
+    "sourceUrl": "https://park.szamlazz.hu/digitalis-vagy-analog-igy-valassz-eszkozt-a-hatekony-informaciokezeleshez/"
+  },
+  {
+    "day": 38,
+    "title": "A legrégebben álló kártya",
+    "topic": "elakadás",
+    "body": "A tábla megmutathatja a torlódást. Keresd meg a legrégebben mozdulatlan feladatot, és írd mellé, mi kell a továbblépéshez.",
+    "sourceLabel": "Kanban",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/11/24/personal-kanban-egy-mernoki-modszer-a-szemelyes-hatekonysag-szolgalataban/"
+  },
+  {
+    "day": 39,
+    "title": "Hetente egy javítás",
+    "topic": "visszatekintés",
+    "body": "A heti visszatekintésből kis kísérlet születhet. Válassz egy visszatérő nehézséget, és egyetlen változtatást, amelyet a következő héten kipróbálsz.",
+    "sourceLabel": "Forbes-interjú",
+    "sourceUrl": "https://www.forbes.hu/legyel-jobb/idogazdalkodas-hatekonysagmenedzsment-konyv-onfejlesztes-erdelyi-boroka/"
+  },
+  {
+    "day": 40,
+    "title": "A listád és a napod mérete",
+    "topic": "kapacitás",
+    "body": "A hosszabb lista nem növeli az idődet. Ma annyi feladatot tervezz be, amennyinek valóban látszik helye.",
+    "sourceLabel": "Femina-interjú",
+    "sourceUrl": "https://femina.hu/otthon/idogazdalkodas-a-mindennapokban/"
+  },
+  {
+    "day": 41,
+    "title": "Időnapló: figyeld meg a valóságot",
+    "topic": "idő",
+    "body": "A tervezéshez hasznos tudnod, mire megy el az időd. Ma néhány órán át negyedórás bontásban jegyezd fel, mivel foglalkozol.",
+    "sourceLabel": "Forbes-interjú",
+    "sourceUrl": "https://www.forbes.hu/legyel-jobb/idogazdalkodas-hatekonysagmenedzsment-konyv-onfejlesztes-erdelyi-boroka/"
+  },
+  {
+    "day": 42,
+    "title": "Keress összehasonlítható múltat",
+    "topic": "tapasztalat",
+    "body": "A becsléshez támpont kell. Egy mai feladat előtt nézd meg, mennyi ideig tartott legutóbb egy hasonló munka.",
+    "sourceLabel": "Időbecslés",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/02/24/idobecsles/"
+  },
+  {
+    "day": 43,
+    "title": "Építs egy meglévő erősségedre",
+    "topic": "önismeret",
+    "body": "Van, ami már most jól működik nálad. Nevezd meg, mi segít benne, és próbáld átvinni egy nehezebb feladatodra.",
+    "sourceLabel": "Libertine-interjú",
+    "sourceUrl": "https://libertinekonyvesbolt.hu/erdelyi-boroka-mindenkit-ova-intek-attol-hogy-januar-1-jetol-drasztikusan-valtoztasson-az-eleten-1617135"
+  },
+  {
+    "day": 44,
+    "title": "Egy változó egy próbában",
+    "topic": "tanulás",
+    "body": "Sok egyidejű módosításból nehéz tanulni. Ma csak egy részletet változtass egy rutinodon, és figyeld meg a hatását.",
+    "sourceLabel": "Kaizen",
+    "sourceUrl": "https://erdelyiboroka.hu/2021/06/24/kaizen-folyamatos-fejlodes-apro-lepesekben/"
+  },
+  {
+    "day": 45,
+    "title": "Rövid rendrakás az információk között",
+    "topic": "visszatekintés",
+    "body": "A feladatkezelőd karbantartást is igényel. Nézd át a lejárt és teljesített tételeket, majd zárd le vagy ütemezd újra őket.",
+    "sourceLabel": "Szerzői cikk: információkezelés",
+    "sourceUrl": "https://park.szamlazz.hu/digitalis-vagy-analog-igy-valassz-eszkozt-a-hatekony-informaciokezeleshez/"
+  },
+  {
+    "day": 46,
+    "title": "Egy kör az apró ügyeknek",
+    "topic": "szervezés",
+    "body": "Több rövid teendő közös keretet kaphat. Ma egy időzített munkaszakaszban intézz el néhány előre kiválasztott adminisztratív apróságot.",
+    "sourceLabel": "Pomodoro",
+    "sourceUrl": "https://erdelyiboroka.hu/2018/06/14/a-3-legegyszerubb-modszer-hogy-hatekonyabb-legy/"
+  },
+  {
+    "day": 47,
+    "title": "Milyen napot szeretnél megélni?",
+    "topic": "életminőség",
+    "body": "A nyugodtabb hétköznap is lehet cél. Írj le egy konkrét jelet, amelyből este felismernéd, hogy ma élhetőbb volt a napod.",
+    "sourceLabel": "Libertine-interjú",
+    "sourceUrl": "https://libertinekonyvesbolt.hu/erdelyi-boroka-mindenkit-ova-intek-attol-hogy-januar-1-jetol-drasztikusan-valtoztasson-az-eleten-1617135"
+  },
+  {
+    "day": 48,
+    "title": "Terved a váratlan szabad félórára",
+    "topic": "rugalmasság",
+    "body": "A felszabaduló időre előre készülhetsz. Válassz egy fontos, könnyen elővehető feladatot arra az esetre, ha elmarad egy program.",
+    "sourceLabel": "Fókuszstílusok",
+    "sourceUrl": "https://erdelyiboroka.hu/2023/02/02/a-fokuszalt-munka-negy-modja/"
+  },
+  {
+    "day": 49,
+    "title": "Bővíts egy bevált apróságot",
+    "topic": "szokás",
+    "body": "A fokozatos változtatás a működő lépésre épülhet. Válassz egy már bevált kis szokást, és csak akkor bővítsd, ha kényelmesen belefér.",
+    "sourceLabel": "Libertine-interjú",
+    "sourceUrl": "https://libertinekonyvesbolt.hu/erdelyi-boroka-mindenkit-ova-intek-attol-hogy-januar-1-jetol-drasztikusan-valtoztasson-az-eleten-1617135"
+  },
+  {
+    "day": 50,
+    "title": "Egy pontos kérdés",
+    "topic": "segítségkérés",
+    "body": "A hiányzó tudás elakaszthat. Fogalmazz meg egyetlen konkrét kérdést, és kérj segítséget attól, aki válaszolhat rá.",
+    "sourceLabel": "Halogatás",
+    "sourceUrl": "https://erdelyiboroka.hu/2017/04/20/33-tipp-halogatas-ellen/"
+  },
+  {
+    "day": 51,
+    "title": "Ismerd meg az energiagörbédet",
+    "topic": "energia",
+    "body": "Az energiaszinted a nap során változhat. Figyeld meg, mikor koncentrálsz könnyebben, és ha megoldható, oda időzíts egy nehéz feladatot.",
+    "sourceLabel": "Forbes-interjú",
+    "sourceUrl": "https://www.forbes.hu/legyel-jobb/idogazdalkodas-hatekonysagmenedzsment-konyv-onfejlesztes-erdelyi-boroka/"
+  },
+  {
+    "day": 52,
+    "title": "Melyik nagy projekt fér bele?",
+    "topic": "kapacitás",
+    "body": "A hasznos nagy projektek is versengenek az idődért. Jelöld ki, melyiket viszed most tovább, és melyiket teszed későbbre.",
+    "sourceLabel": "Ráfordítás",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/10/13/erofeszites-hatas-priorizalas-ket-dimenzioban/"
+  },
+  {
+    "day": 53,
+    "title": "A régi szereposztás ma is működik?",
+    "topic": "életszerepek",
+    "body": "A körülményeid változásával a rutinjaid is változhatnak. Nézz meg egy visszatérő otthoni teendőt: most is indokolt ugyanúgy végezned?",
+    "sourceLabel": "Libertine-interjú",
+    "sourceUrl": "https://libertinekonyvesbolt.hu/erdelyi-boroka-mindenkit-ova-intek-attol-hogy-januar-1-jetol-drasztikusan-valtoztasson-az-eleten-1617135"
+  },
+  {
+    "day": 54,
+    "title": "Előbb szabadíts fel helyet",
+    "topic": "befejezés",
+    "body": "Új feladathoz szabad kapacitás kell. Ha betelt a folyamatban oszlopod, ma egy meglévő ügy lezárásával kezdj.",
+    "sourceLabel": "Kanban",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/11/24/personal-kanban-egy-mernoki-modszer-a-szemelyes-hatekonysag-szolgalataban/"
+  },
+  {
+    "day": 55,
+    "title": "Vedd észre a működő részeket",
+    "topic": "visszatekintés",
+    "body": "A visszatekintésből az erősségeid is kiderülhetnek. Írj le három dolgot, ami ezen a héten jól ment, és egyet tarts meg tudatosan.",
+    "sourceLabel": "Forbes-interjú",
+    "sourceUrl": "https://www.forbes.hu/legyel-jobb/idogazdalkodas-hatekonysagmenedzsment-konyv-onfejlesztes-erdelyi-boroka/"
+  },
+  {
+    "day": 56,
+    "title": "Nem minden üzenet sürgős",
+    "topic": "határok",
+    "body": "A beérkezés ideje nem feltétlenül határidő. Ha a szereped engedi, a kevésbé sürgős üzeneteknek jelölj ki válaszidőszakot.",
+    "sourceLabel": "Femina-interjú",
+    "sourceUrl": "https://femina.hu/otthon/idogazdalkodas-a-mindennapokban/"
+  },
+  {
+    "day": 57,
+    "title": "Pontosítsd az időbecslésedet",
+    "topic": "idő",
+    "body": "A reális tervhez reális időbecslés kell. Egy feladat előtt írd le, meddig tarthat, utána mérd össze a becslést a tényleges idővel.",
+    "sourceLabel": "Hivatalos beleolvasó",
+    "sourceUrl": "https://libertinekonyvesbolt.hu/custom/libertine/image/data/srattached/8e92c2e576e31eefa915f6968ea8a712_eletcelidobeleolvaso.pdf"
+  },
+  {
+    "day": 58,
+    "title": "Saját korrekciós arány",
+    "topic": "visszacsatolás",
+    "body": "A rendszeres alábecslés felismerhető. Oszd el egy korábbi feladat tényleges idejét a becsléssel; az arányt próbáld ki hasonló munkánál.",
+    "sourceLabel": "Időbecslés",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/02/24/idobecsles/"
+  },
+  {
+    "day": 59,
+    "title": "A szünetnek is legyen helye",
+    "topic": "pihenés",
+    "body": "Az élhető munkamenethez megállások is tartoznak. Két megterhelő feladat közé iktass egy rövid szünetet, ha a körülményeid engedik.",
+    "sourceLabel": "Forbes-interjú",
+    "sourceUrl": "https://www.forbes.hu/legyel-jobb/idogazdalkodas-hatekonysagmenedzsment-konyv-onfejlesztes-erdelyi-boroka/"
+  },
+  {
+    "day": 60,
+    "title": "Újra használható ellenőrzőlista",
+    "topic": "rendszerezés",
+    "body": "A visszatérő munka lépései rögzíthetők. Készíts rövid ellenőrzőlistát egy rendszeres teendőhöz, és próbáld ki a következő alkalommal.",
+    "sourceLabel": "Kaizen",
+    "sourceUrl": "https://erdelyiboroka.hu/2021/06/24/kaizen-folyamatos-fejlodes-apro-lepesekben/"
+  },
+  {
+    "day": 61,
+    "title": "Kinek a célját követed?",
+    "topic": "önismeret",
+    "body": "A törekvéseid mögött külső elvárások is állhatnak. Egy célodnál kérdezd meg: akkor is fontos lenne, ha senki nem látná?",
+    "sourceLabel": "Képmás-interjú",
+    "sourceUrl": "https://kepmas.hu/hu/hatekony-idogazdalkodas-erdelyi-boroka-idobeosztas-onismeret-multitasking-hatranyai-uj-szokasok-kialakitasa"
+  },
+  {
+    "day": 62,
+    "title": "A levelezésnek is lehet vége",
+    "topic": "határok",
+    "body": "Az üzenetekre elmehet a teljes szabad idő. Ma szabj előre időkeretet a levelezésnek, majd a végén zárd le.",
+    "sourceLabel": "Pomodoro",
+    "sourceUrl": "https://erdelyiboroka.hu/2018/06/14/a-3-legegyszerubb-modszer-hogy-hatekonyabb-legy/"
+  },
+  {
+    "day": 63,
+    "title": "Adj időblokkot a fontosnak",
+    "topic": "tervezés",
+    "body": "A fontos feladatnak helyet kell kapnia a napodban. Foglalj le rá egy megvalósítható időblokkot, és írd mellé, pontosan mivel foglalkozol benne.",
+    "sourceLabel": "Hivatalos beleolvasó",
+    "sourceUrl": "https://libertinekonyvesbolt.hu/custom/libertine/image/data/srattached/8e92c2e576e31eefa915f6968ea8a712_eletcelidobeleolvaso.pdf"
+  },
+  {
+    "day": 64,
+    "title": "Visszatérő találkozó a fókuszoddal",
+    "topic": "szokás",
+    "body": "A rendszeres időpont kapaszkodót adhat. Válassz egy fenntartható napszakot az elmélyüléshez, és jelöld be a következő néhány alkalmat.",
+    "sourceLabel": "Fókuszstílusok",
+    "sourceUrl": "https://erdelyiboroka.hu/2023/02/02/a-fokuszalt-munka-negy-modja/"
+  },
+  {
+    "day": 65,
+    "title": "Kérj gondolkodási időt",
+    "topic": "határok",
+    "body": "Az azonnali válasz nem mindig szükséges. Egy új kérésnél próbáld ezt: megnézem a vállalásaimat, és jelzek, mi fér bele.",
+    "sourceLabel": "Képmás-interjú",
+    "sourceUrl": "https://kepmas.hu/hu/hatekony-idogazdalkodas-erdelyi-boroka-idobeosztas-onismeret-multitasking-hatranyai-uj-szokasok-kialakitasa"
+  },
+  {
+    "day": 66,
+    "title": "Próbálj másik helyet",
+    "topic": "környezet",
+    "body": "A megszokott helyhez megszokott kitérők társulhatnak. Próbáld ki ugyanazt a feladatot ma egy másik, nyugodtabb helyen.",
+    "sourceLabel": "Halogatás",
+    "sourceUrl": "https://erdelyiboroka.hu/2017/04/20/33-tipp-halogatas-ellen/"
+  },
+  {
+    "day": 67,
+    "title": "Nézzetek rá a közös feladatokra",
+    "topic": "kapcsolatok",
+    "body": "A megszokott munkamegosztás túlterhelhet valakit. Egy közös teendőnél beszéljétek át, ki mit tud most reálisan vállalni.",
+    "sourceLabel": "Képmás-interjú",
+    "sourceUrl": "https://kepmas.hu/hu/hatekony-idogazdalkodas-erdelyi-boroka-idobeosztas-onismeret-multitasking-hatranyai-uj-szokasok-kialakitasa"
+  },
+  {
+    "day": 68,
+    "title": "Mit nevezel eredménynek?",
+    "topic": "értékelés",
+    "body": "A haszon megítéléséhez mérce kell. Ma egy döntés előtt mondd ki, mit szeretnél javítani: időt, minőséget vagy terhelést.",
+    "sourceLabel": "Ráfordítás",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/10/13/erofeszites-hatas-priorizalas-ket-dimenzioban/"
+  },
+  {
+    "day": 69,
+    "title": "Hagyj tartalékidőt",
+    "topic": "rugalmasság",
+    "body": "A rugalmas terv számol a csúszásokkal. Próbáld a tervezhető időd körülbelül ötödét szabadon hagyni; ezt igazítsd a saját körülményeidhez.",
+    "sourceLabel": "Forbes-interjú",
+    "sourceUrl": "https://www.forbes.hu/legyel-jobb/idogazdalkodas-hatekonysagmenedzsment-konyv-onfejlesztes-erdelyi-boroka/"
+  },
+  {
+    "day": 70,
+    "title": "Egy kártya, egy lépés",
+    "topic": "feladatbontás",
+    "body": "A túl nagy kártya nehezen mozdul. Bontsd az egyik tág projektcímet néhány külön elvégezhető teendőre.",
+    "sourceLabel": "Kanban",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/11/24/personal-kanban-egy-mernoki-modszer-a-szemelyes-hatekonysag-szolgalataban/"
+  },
+  {
+    "day": 71,
+    "title": "Mire van ma szükséged?",
+    "topic": "életszerepek",
+    "body": "A napi tervet az aktuális igényeidhez alakíthatod. Válassz egy most háttérbe szorult életterületet, és keress neki egy kis helyet.",
+    "sourceLabel": "Képmás-interjú",
+    "sourceUrl": "https://kepmas.hu/hu/hatekony-idogazdalkodas-erdelyi-boroka-idobeosztas-onismeret-multitasking-hatranyai-uj-szokasok-kialakitasa"
+  },
+  {
+    "day": 72,
+    "title": "Mire fordítod a nyert időt?",
+    "topic": "életminőség",
+    "body": "A felszabaduló idő hamar újra megtelik. Ma előre nevezd meg, milyen számodra fontos tevékenység kapja meg.",
+    "sourceLabel": "Femina-interjú",
+    "sourceUrl": "https://femina.hu/otthon/idogazdalkodas-a-mindennapokban/"
+  },
+  {
+    "day": 73,
+    "title": "Adj figyelmes időt",
+    "topic": "kapcsolatok",
+    "body": "A kapcsolataidra fordított idő is értékes. Válassz valakit, aki fontos neked, és tervezz vele egy rövid, zavartalan beszélgetést.",
+    "sourceLabel": "Hivatalos beleolvasó",
+    "sourceUrl": "https://libertinekonyvesbolt.hu/custom/libertine/image/data/srattached/8e92c2e576e31eefa915f6968ea8a712_eletcelidobeleolvaso.pdf"
+  },
+  {
+    "day": 74,
+    "title": "Három lehetséges időtartam",
+    "topic": "bizonytalanság",
+    "body": "Egyetlen szám elrejtheti a bizonytalanságot. Becsülj optimista, valószínű és pesszimista időt; támpontként számolj: (optimista + 4×valószínű + pesszimista) / 6.",
+    "sourceLabel": "Időbecslés",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/02/24/idobecsles/"
+  },
+  {
+    "day": 75,
+    "title": "Válassz valódi prioritást",
+    "topic": "prioritás",
+    "body": "A céljaid segítenek eldönteni, mire érdemes időt szánni. Nézd át a mai listádat, és jelölj meg egy feladatot, amely érdemben előrevisz.",
+    "sourceLabel": "Könyvrecenzió",
+    "sourceUrl": "https://index.hu/kultur/2024/05/14/elet-cel-ido-erdelyi-boroka-konyv-idogazdalkodas-libertine-recenzio/"
+  },
+  {
+    "day": 76,
+    "title": "Bevásárlás újrakezdés nélkül",
+    "topic": "hétköznapok",
+    "body": "A rendszeresen szükséges dolgokat újra felsorolni is munka. Készíts alaplistát, amelyből legközelebb csak az aktuális tételeket választod ki.",
+    "sourceLabel": "Kaizen",
+    "sourceUrl": "https://erdelyiboroka.hu/2021/06/24/kaizen-folyamatos-fejlodes-apro-lepesekben/"
+  },
+  {
+    "day": 77,
+    "title": "Keresd a tényleges mozgásteredet",
+    "topic": "rugalmasság",
+    "body": "A kötelezettségeid valós korlátokat jelentenek. Írd le, min tudsz ma változtatni, és válassz abból egy apró lépést.",
+    "sourceLabel": "Hivatalos beleolvasó",
+    "sourceUrl": "https://libertinekonyvesbolt.hu/custom/libertine/image/data/srattached/8e92c2e576e31eefa915f6968ea8a712_eletcelidobeleolvaso.pdf"
+  },
+  {
+    "day": 78,
+    "title": "Igazíts a munkaritmuson",
+    "topic": "önismeret",
+    "body": "A munkaszakasz hossza nem szentírás. Ha a választott keret nem működik, a következő próbán rövidítsd vagy hosszabbítsd tudatosan.",
+    "sourceLabel": "Pomodoro",
+    "sourceUrl": "https://erdelyiboroka.hu/2018/06/14/a-3-legegyszerubb-modszer-hogy-hatekonyabb-legy/"
+  },
+  {
+    "day": 79,
+    "title": "Nézz rá a szerepeidre",
+    "topic": "életszerepek",
+    "body": "Több életterületen is jelen vagy. Sorolj fel három fontos szerepet, és jelöld, melyik kér most több figyelmet.",
+    "sourceLabel": "Hivatalos beleolvasó",
+    "sourceUrl": "https://libertinekonyvesbolt.hu/custom/libertine/image/data/srattached/8e92c2e576e31eefa915f6968ea8a712_eletcelidobeleolvaso.pdf"
+  },
+  {
+    "day": 80,
+    "title": "Saját indítójel",
+    "topic": "szokás",
+    "body": "A kezdésnek lehet egyszerű rítusa. Válassz egy rövid jelzést, például egy bögre teát, majd utána rögtön kezdj dolgozni.",
+    "sourceLabel": "Halogatás",
+    "sourceUrl": "https://erdelyiboroka.hu/2017/04/20/33-tipp-halogatas-ellen/"
+  },
+  {
+    "day": 81,
+    "title": "Állj meg az igen előtt",
+    "topic": "határok",
+    "body": "Egy új vállalás helyet kér a napodban. Mielőtt igent mondasz, nézd meg, belefér-e, és milyen már vállalt feladattól venne el időt.",
+    "sourceLabel": "Képmás-interjú",
+    "sourceUrl": "https://kepmas.hu/hu/hatekony-idogazdalkodas-erdelyi-boroka-idobeosztas-onismeret-multitasking-hatranyai-uj-szokasok-kialakitasa"
+  },
+  {
+    "day": 82,
+    "title": "Eltérő becslés, hasznos kérdés",
+    "topic": "együttműködés",
+    "body": "Két ember más ráfordítást láthat. Közös feladatnál hasonlítsátok össze a becsléseiteket, és keressétek meg az eltérés okát.",
+    "sourceLabel": "Ráfordítás",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/10/13/erofeszites-hatas-priorizalas-ket-dimenzioban/"
+  },
+  {
+    "day": 83,
+    "title": "Mikor nézel rá újra a célodra?",
+    "topic": "célkövetés",
+    "body": "A célkövetéshez visszatérési pont kell. Jelölj ki egy időpontot, amikor megnézed, hol tartasz, és mi legyen a következő lépés.",
+    "sourceLabel": "Hivatalos beleolvasó",
+    "sourceUrl": "https://libertinekonyvesbolt.hu/custom/libertine/image/data/srattached/8e92c2e576e31eefa915f6968ea8a712_eletcelidobeleolvaso.pdf"
+  },
+  {
+    "day": 84,
+    "title": "Mikor kerülhet a kész oszlopba?",
+    "topic": "minőség",
+    "body": "A befejezéshez világos feltétel kell. Egy mai feladatnál előre írd le, minek kell teljesülnie a kész állapothoz.",
+    "sourceLabel": "Kanban",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/11/24/personal-kanban-egy-mernoki-modszer-a-szemelyes-hatekonysag-szolgalataban/"
+  },
+  {
+    "day": 85,
+    "title": "Vedd észre a megszakítást",
+    "topic": "figyelem",
+    "body": "A figyelemvesztés okát megfigyelheted. A következő munkaszakaszban jegyezd fel a megszakításokat, majd válassz egy csökkenthető zavaró tényezőt.",
+    "sourceLabel": "A szerző szakmai oldala",
+    "sourceUrl": "https://erdelyiboroka.hu/"
+  },
+  {
+    "day": 86,
+    "title": "A szabadidős olvasmány is elengedhető",
+    "topic": "elengedés",
+    "body": "A kikapcsolódásnak nem kell kötelességgé válnia. Ha egy szabadidős könyv már nem ad neked semmit, tedd félre.",
+    "sourceLabel": "Femina-interjú",
+    "sourceUrl": "https://femina.hu/otthon/idogazdalkodas-a-mindennapokban/"
+  },
+  {
+    "day": 87,
+    "title": "Mi hiányzik a kezdéshez?",
+    "topic": "halogatás",
+    "body": "A halogatásnál érdemes megvizsgálni az elakadást. Egy tologatott feladatnál nevezd meg, milyen információra, eszközre vagy tisztázásra vársz.",
+    "sourceLabel": "A szerző szakmai oldala",
+    "sourceUrl": "https://erdelyiboroka.hu/"
+  },
+  {
+    "day": 88,
+    "title": "Kérdezd az elvégzőt",
+    "topic": "együttműködés",
+    "body": "A munka ismerete pontosíthatja a tervet. Közös feladat időkerete előtt kérdezd meg azt, aki ténylegesen végrehajtja.",
+    "sourceLabel": "Időbecslés",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/02/24/idobecsles/"
+  },
+  {
+    "day": 89,
+    "title": "Rövidíts egy munkafolyamatot",
+    "topic": "egyszerűsítés",
+    "body": "Egy visszatérő teendő menetén is lehet javítani. Írd le a lépéseit, és keress egy felesleges körutat vagy ismétlést.",
+    "sourceLabel": "A szerző szakmai oldala",
+    "sourceUrl": "https://erdelyiboroka.hu/"
+  },
+  {
+    "day": 90,
+    "title": "Kevesebb fölösleges mozdulat",
+    "topic": "környezet",
+    "body": "Az eszközök helye is számít. Egy gyakran használt tárgyat tegyél közelebb a használat helyéhez, és figyeld meg a különbséget.",
+    "sourceLabel": "Kaizen",
+    "sourceUrl": "https://erdelyiboroka.hu/2021/06/24/kaizen-folyamatos-fejlodes-apro-lepesekben/"
+  },
+  {
+    "day": 91,
+    "title": "Egyszerre egy figyelmet igénylő feladat",
+    "topic": "figyelem",
+    "body": "A folyamatos feladatváltás megnehezíti az elmélyülést. A következő húsz percben dolgozz egy dolgon, és némítsd le az elhalasztható értesítéseket.",
+    "sourceLabel": "Képmás-interjú",
+    "sourceUrl": "https://kepmas.hu/hu/hatekony-idogazdalkodas-erdelyi-boroka-idobeosztas-onismeret-multitasking-hatranyai-uj-szokasok-kialakitasa"
+  },
+  {
+    "day": 92,
+    "title": "Négy kör után hosszabb megállás",
+    "topic": "pihenés",
+    "body": "A Pomodoro hosszabb pihenőt is tartalmaz. Ha négy munkaszakaszt végzel egymás után, a végére tervezz hosszabb szünetet.",
+    "sourceLabel": "Pomodoro",
+    "sourceUrl": "https://erdelyiboroka.hu/2018/06/14/a-3-legegyszerubb-modszer-hogy-hatekonyabb-legy/"
+  },
+  {
+    "day": 93,
+    "title": "Könnyítsd meg az elkezdést",
+    "topic": "halogatás",
+    "body": "A halogatott feladat kezdését is megtervezheted. Írd le az első konkrét mozdulatot, készíts elő hozzá mindent, majd foglalkozz vele öt percig.",
+    "sourceLabel": "A szerző szakmai oldala",
+    "sourceUrl": "https://erdelyiboroka.hu/"
+  },
+  {
+    "day": 94,
+    "title": "Elég az előkészületből",
+    "topic": "cselekvés",
+    "body": "A tervezés is válhat halogatássá. Ha a következő lépés már világos, ma további tervezés helyett hajtsd végre.",
+    "sourceLabel": "Halogatás",
+    "sourceUrl": "https://erdelyiboroka.hu/2017/04/20/33-tipp-halogatas-ellen/"
+  },
+  {
+    "day": 95,
+    "title": "Legyen helye a nap lezárásának",
+    "topic": "határok",
+    "body": "A munka és a magánélet határát tudatosíthatod. Jelölj ki egy reális lezárási pontot, és írd fel a következő munkakezdés teendőjét.",
+    "sourceLabel": "A szerző szakmai oldala",
+    "sourceUrl": "https://erdelyiboroka.hu/"
+  },
+  {
+    "day": 96,
+    "title": "Számold hozzá a járulékos munkát",
+    "topic": "ráfordítás",
+    "body": "A látható feladat körül is van munka. Ma számold hozzá egy vállalás előkészítését, egyeztetését és utólagos rendezését.",
+    "sourceLabel": "Ráfordítás",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/10/13/erofeszites-hatas-priorizalas-ket-dimenzioban/"
+  },
+  {
+    "day": 97,
+    "title": "Beszélj magaddal támogatóan",
+    "topic": "önegyüttérzés",
+    "body": "Az önegyüttérzésnek a célkövetésben is van helye. Egy elmaradt feladat után fogalmazz meg egy támogató mondatot magadnak.",
+    "sourceLabel": "A szerző könyvismertetője",
+    "sourceUrl": "https://erdelyiboroka.hu/konyv/"
+  },
+  {
+    "day": 98,
+    "title": "Mit mutat a kész oszlop?",
+    "topic": "visszatekintés",
+    "body": "A lezárt feladatokból tanulhatsz. Nézd meg, melyik típus haladt gördülékenyen, és próbáld átvinni a működő megoldást egy elakadt ügyre.",
+    "sourceLabel": "Kanban",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/11/24/personal-kanban-egy-mernoki-modszer-a-szemelyes-hatekonysag-szolgalataban/"
+  },
+  {
+    "day": 99,
+    "title": "Egy apró változtatás is számít",
+    "topic": "szokás",
+    "body": "A fokozatos változást könnyebb a saját életedhez igazítani. Válassz ma egy kicsi, megismételhető javítást azon a ponton, amely a legjobban zavar.",
+    "sourceLabel": "Libertine-interjú",
+    "sourceUrl": "https://libertinekonyvesbolt.hu/erdelyi-boroka-mindenkit-ova-intek-attol-hogy-januar-1-jetol-drasztikusan-valtoztasson-az-eleten-1617135"
+  },
+  {
+    "day": 100,
+    "title": "Több, kevesebb, semennyi",
+    "topic": "önismeret",
+    "body": "Az időbeosztást az arányok is alakítják. Válassz egy tevékenységet, amelyből többet szeretnél, egyet, amelyből kevesebbet, és egy elhagyhatót.",
+    "sourceLabel": "Femina-interjú",
+    "sourceUrl": "https://femina.hu/otthon/idogazdalkodas-a-mindennapokban/"
+  },
+  {
+    "day": 101,
+    "title": "Vedd számításba a mai energiádat",
+    "topic": "energia",
+    "body": "Az idő mellé az energiáddal is tervezz. Egy megterhelő vállalást bonts könnyebb részekre, ha ma erre van kapacitásod.",
+    "sourceLabel": "A szerző könyvismertetője",
+    "sourceUrl": "https://erdelyiboroka.hu/konyv/"
+  },
+  {
+    "day": 102,
+    "title": "Munkaidő és átfutás",
+    "topic": "tervezés",
+    "body": "A várakozás is tolhatja a befejezést. Ma külön jelöld egy ügy aktív munkaidejét és a szükséges várakozást.",
+    "sourceLabel": "Időbecslés",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/02/24/idobecsles/"
+  },
+  {
+    "day": 103,
+    "title": "Hagyj teret az örömnek",
+    "topic": "életminőség",
+    "body": "A jól szervezett napban a kedvelt tevékenységeknek is lehet helyük. Válassz egy egyszerű örömforrást, amely ma reálisan belefér.",
+    "sourceLabel": "A szerző könyvismertetője",
+    "sourceUrl": "https://erdelyiboroka.hu/konyv/"
+  },
+  {
+    "day": 104,
+    "title": "Egy megoldás az öt helyett",
+    "topic": "egyszerűsítés",
+    "body": "A szükségtelen változatok is munkát jelentenek. Ma egy kis tétű feladathoz egy megfelelő megoldást készíts a sok alternatíva helyett.",
+    "sourceLabel": "Kaizen",
+    "sourceUrl": "https://erdelyiboroka.hu/2021/06/24/kaizen-folyamatos-fejlodes-apro-lepesekben/"
+  },
+  {
+    "day": 105,
+    "title": "Vizsgáld felül a megszokást",
+    "topic": "önismeret",
+    "body": "Egy régi rutin megváltozott körülmények között már kevésbé segíthet. Válassz egy visszatérő teendőt, és kérdezd meg: szükséges még így csinálnom?",
+    "sourceLabel": "Libertine-interjú",
+    "sourceUrl": "https://libertinekonyvesbolt.hu/erdelyi-boroka-mindenkit-ova-intek-attol-hogy-januar-1-jetol-drasztikusan-valtoztasson-az-eleten-1617135"
+  },
+  {
+    "day": 106,
+    "title": "Hány munkaszakasz lett belőle?",
+    "topic": "időbecslés",
+    "body": "A munkaszakaszok száma tapasztalati adat. Jegyezd fel, hány kör kellett egy feladathoz, és őrizd meg a következő becsléshez.",
+    "sourceLabel": "Pomodoro",
+    "sourceUrl": "https://erdelyiboroka.hu/2018/06/14/a-3-legegyszerubb-modszer-hogy-hatekonyabb-legy/"
+  },
+  {
+    "day": 107,
+    "title": "Miből érzed a haladást?",
+    "topic": "célkövetés",
+    "body": "A hatékonyságot a célodhoz kapcsolhatod. Este nevezz meg egy dolgot, amely közelebb vitt ahhoz, ami neked fontos.",
+    "sourceLabel": "A szerző könyvismertetője",
+    "sourceUrl": "https://erdelyiboroka.hu/konyv/"
+  },
+  {
+    "day": 108,
+    "title": "Legyen tanúja a vállalásodnak",
+    "topic": "kapcsolatok",
+    "body": "Egy megbeszélt visszajelzés kapaszkodót adhat. Egyeztess valakivel egy kis vállalást és időpontot, amikor beszámolsz a haladásodról.",
+    "sourceLabel": "Halogatás",
+    "sourceUrl": "https://erdelyiboroka.hu/2017/04/20/33-tipp-halogatas-ellen/"
+  },
+  {
+    "day": 109,
+    "title": "Vizsgáld felül az akciótervet",
+    "topic": "rugalmasság",
+    "body": "A terv időről időre pontosítható. Keress egy megváltozott körülményt, és vezesd át a következményét a következő teendőidre.",
+    "sourceLabel": "Könyvrecenzió",
+    "sourceUrl": "https://index.hu/kultur/2024/05/14/elet-cel-ido-erdelyi-boroka-konyv-idogazdalkodas-libertine-recenzio/"
+  },
+  {
+    "day": 110,
+    "title": "A könnyű feladat ára",
+    "topic": "prioritás",
+    "body": "A könnyű teendő is elfoglalhat értékes időt. Mielőtt kiválasztod, kérdezd meg: mi fontosabb marad miatta későbbre?",
+    "sourceLabel": "Ráfordítás",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/10/13/erofeszites-hatas-priorizalas-ket-dimenzioban/"
+  },
+  {
+    "day": 111,
+    "title": "Magadra is jusson idő",
+    "topic": "pihenés",
+    "body": "A saját feltöltődésed is fontos része az időbeosztásnak. Keress ma egy reálisan felszabadítható rövid időszakot valamire, ami jólesik.",
+    "sourceLabel": "Hivatalos beleolvasó",
+    "sourceUrl": "https://libertinekonyvesbolt.hu/custom/libertine/image/data/srattached/8e92c2e576e31eefa915f6968ea8a712_eletcelidobeleolvaso.pdf"
+  },
+  {
+    "day": 112,
+    "title": "Legyen szem előtt a tábla",
+    "topic": "eszközválasztás",
+    "body": "A rendszer használhatósága számít. Ma tedd a feladattábládat oda, ahol munka közben könnyen megnézheted és frissítheted.",
+    "sourceLabel": "Kanban",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/11/24/personal-kanban-egy-mernoki-modszer-a-szemelyes-hatekonysag-szolgalataban/"
+  },
+  {
+    "day": 113,
+    "title": "Tedd láthatóvá a mérföldkövet",
+    "topic": "célkövetés",
+    "body": "A köztes eredmény is visszajelzés. Egy folyamatban lévő célodnál írd le, melyik mérföldkő teljesült már, és melyik következik.",
+    "sourceLabel": "Könyvrecenzió",
+    "sourceUrl": "https://index.hu/kultur/2024/05/14/elet-cel-ido-erdelyi-boroka-konyv-idogazdalkodas-libertine-recenzio/"
+  },
+  {
+    "day": 114,
+    "title": "Állj meg a következő feladat előtt",
+    "topic": "választás",
+    "body": "Az automatikus folytatás nem mindig segít. Kérdezd meg: most minek lenne a legtöbb értelme, a pihenést is beleértve?",
+    "sourceLabel": "Femina-interjú",
+    "sourceUrl": "https://femina.hu/otthon/idogazdalkodas-a-mindennapokban/"
+  },
+  {
+    "day": 115,
+    "title": "Jelöld a megtett lépést",
+    "topic": "szokás",
+    "body": "A rendszeres cselekvést láthatóvá teheted. A célodért ma elvégzett kis lépést jelöld egy naptárban vagy jegyzetben.",
+    "sourceLabel": "Könyvrecenzió",
+    "sourceUrl": "https://index.hu/kultur/2024/05/14/elet-cel-ido-erdelyi-boroka-konyv-idogazdalkodas-libertine-recenzio/"
+  },
+  {
+    "day": 116,
+    "title": "Az érintettek is tervezzék",
+    "topic": "kapcsolatok",
+    "body": "A közös rutin másokra is hat. Módosítás előtt kérdezd meg az érintetteket, nekik hol nehézkes a jelenlegi folyamat.",
+    "sourceLabel": "Kaizen",
+    "sourceUrl": "https://erdelyiboroka.hu/2021/06/24/kaizen-folyamatos-fejlodes-apro-lepesekben/"
+  },
+  {
+    "day": 117,
+    "title": "Igazítsd a tervet a helyzetedhez",
+    "topic": "rugalmasság",
+    "body": "A működő rendszer követi az élethelyzeted változásait. Nézz rá a mai kapacitásodra, és szükség esetén módosíts egy vállalást vagy határidőt.",
+    "sourceLabel": "Forbes-interjú",
+    "sourceUrl": "https://www.forbes.hu/legyel-jobb/idogazdalkodas-hatekonysagmenedzsment-konyv-onfejlesztes-erdelyi-boroka/"
+  },
+  {
+    "day": 118,
+    "title": "Három valóban lényeges ügy",
+    "topic": "prioritás",
+    "body": "A hosszú lista elrejtheti a lényeget. Ma emelj ki legfeljebb három fontos ügyet, és közülük válassz kezdőfeladatot.",
+    "sourceLabel": "Pomodoro",
+    "sourceUrl": "https://erdelyiboroka.hu/2018/06/14/a-3-legegyszerubb-modszer-hogy-hatekonyabb-legy/"
+  },
+  {
+    "day": 119,
+    "title": "Tartsd meg, ami neked működik",
+    "topic": "önismeret",
+    "body": "Az eszköztárat a saját működésedhez alakíthatod. Válassz a kipróbált módszerek közül egy beváltat, és írd le, mikor fogod legközelebb használni.",
+    "sourceLabel": "Libertine-interjú",
+    "sourceUrl": "https://libertinekonyvesbolt.hu/erdelyi-boroka-mindenkit-ova-intek-attol-hogy-januar-1-jetol-drasztikusan-valtoztasson-az-eleten-1617135"
+  },
+  {
+    "day": 120,
+    "title": "Új adat, új becslés",
+    "topic": "rugalmasság",
+    "body": "Az első részfeladat tanulságot adhat. Befejezése után számold újra a hátralévő munkát, ha az eredeti becslés nem bizonyult reálisnak.",
+    "sourceLabel": "Időbecslés",
+    "sourceUrl": "https://erdelyiboroka.hu/2022/02/24/idobecsles/"
+  }
+]

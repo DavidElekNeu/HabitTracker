@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_today_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/striveup_widget_bg"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/widget_today_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today habits"
+        android:textColor="#FFFFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/widget_today_summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="0/0 done"
+        android:textColor="#E6FFFFFF"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/widget_today_row1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/widget_action_pill"
+        android:padding="8dp"
+        android:textColor="#FFFFFFFF"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/widget_today_row2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/widget_action_pill"
+        android:padding="8dp"
+        android:textColor="#FFFFFFFF"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/widget_today_row3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/widget_action_pill"
+        android:padding="8dp"
+        android:textColor="#FFFFFFFF"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/widget_today_row4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/widget_action_pill"
+        android:padding="8dp"
+        android:textColor="#FFFFFFFF"
+        android:textSize="12sp" />
+
+</LinearLayout>

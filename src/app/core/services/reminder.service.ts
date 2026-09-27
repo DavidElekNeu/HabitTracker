@@ -1,5 +1,7 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Habit } from '../../data/models/habit.model';
+import { AppNotificationService } from './app-notification.service';
+import { DailyMotivationNotificationService } from './daily-motivation-notification.service';
 
 declare const self: unknown;
 
@@ -20,51 +22,45 @@ export interface ReminderEntry {
 })
 export class ReminderService {
   private readonly storageKey = 'habit-tracker-reminders';
+  private readonly reminderChannelId = 'habit-reminders';
   private readonly remindersSignal = signal<ReminderEntry[]>(this.readReminders());
   private readonly timeoutHandles = new Map<number, number>();
+  private readonly notificationService = inject(AppNotificationService);
+  private readonly dailyMotivationNotificationService = inject(DailyMotivationNotificationService);
 
   readonly reminders = this.remindersSignal.asReadonly();
 
   constructor() {
-    if (typeof window !== 'undefined' && 'Notification' in window && Notification.permission === 'granted') {
-      void this.applySchedules();
-    }
-    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+    void this.initialize();
+
+    if (
+      !this.notificationService.isNativePlatform &&
+      this.notificationService.supportsWebServiceWorker()
+    ) {
       navigator.serviceWorker.ready.then(() => {
-        if (Notification.permission === 'granted') {
-          void this.applySchedules();
-        }
+        void this.initialize();
       });
     }
   }
 
   async requestPermission(): Promise<NotificationPermission> {
-    if (!('Notification' in window)) {
-      return 'denied';
-    }
-
-    if (Notification.permission === 'default') {
-      const result = await Notification.requestPermission();
-      if (result === 'granted') {
-        void this.applySchedules();
-      } else {
-        this.clearScheduled();
-      }
-      return result;
-    }
-
-    if (Notification.permission === 'granted') {
+    const permission = await this.notificationService.requestPermission();
+    if (permission === 'granted') {
       void this.applySchedules();
+      void this.dailyMotivationNotificationService.refreshSchedule();
+      return permission;
     }
 
-    return Notification.permission;
+    await this.clearAllScheduledNotifications(true);
+    return permission;
   }
 
   async enableReminder(habit: Habit, schedule: ReminderSchedule): Promise<void> {
     if (!habit.id) {
       return;
     }
-    await this.requestPermission();
+
+    const permission = await this.requestPermission();
     const filtered = this.remindersSignal().filter((entry) => entry.habitId !== habit.id);
     const updated: ReminderEntry = {
       habitId: habit.id,
@@ -72,9 +68,18 @@ export class ReminderService {
       schedule
     };
     this.persist([...filtered, updated]);
-    if ('Notification' in window && Notification.permission === 'granted') {
+
+    if (permission !== 'granted') {
+      return;
+    }
+
+    if (
+      !this.notificationService.isNativePlatform &&
+      this.notificationService.hasWebNotificationSupport()
+    ) {
       this.previewReminder(updated);
     }
+
     await this.scheduleReminder(updated);
   }
 
@@ -82,20 +87,20 @@ export class ReminderService {
     const filtered = this.remindersSignal().filter((reminder) => reminder.habitId !== habitId);
     this.persist(filtered);
     this.clearScheduled(habitId);
+    void this.clearNativeReminderNotifications(habitId, true);
     void this.cancelScheduledNotification(habitId);
     void this.applySchedules();
   }
 
   reset(): void {
     this.persist([]);
-    this.clearScheduled();
-    void this.applySchedules();
+    void this.clearAllScheduledNotifications(true);
   }
 
   private async applySchedules(): Promise<void> {
-    this.clearScheduled();
-
-    if (!('Notification' in window) || Notification.permission !== 'granted') {
+    await this.clearAllScheduledNotifications();
+    const permission = await this.notificationService.getPermission();
+    if (permission !== 'granted') {
       return;
     }
 
@@ -110,7 +115,13 @@ export class ReminderService {
       return;
     }
 
-    const registration = await navigator.serviceWorker.getRegistration();
+    if (this.notificationService.isNativePlatform) {
+      await this.clearNativeReminderNotifications(reminder.habitId);
+      await this.scheduleNativeReminder(reminder);
+      return;
+    }
+
+    const registration = await this.notificationService.getServiceWorkerRegistration();
     if (registration && 'showNotification' in registration && this.supportsNotificationTrigger()) {
       try {
         await this.cancelScheduledNotification(reminder.habitId, registration);
@@ -126,7 +137,10 @@ export class ReminderService {
           return;
         }
       } catch (error) {
-        console.warn('Scheduling via notification trigger failed, falling back to setTimeout.', error);
+        console.warn(
+          'Scheduling via notification trigger failed, falling back to setTimeout.',
+          error
+        );
       }
     }
 
@@ -154,7 +168,15 @@ export class ReminderService {
   }
 
   private async deliverNotification(reminder: ReminderEntry): Promise<void> {
-    if (!('Notification' in window) || Notification.permission !== 'granted') {
+    if (this.notificationService.isNativePlatform) {
+      await this.scheduleNativeReminder(reminder, true);
+      return;
+    }
+
+    if (
+      !this.notificationService.hasWebNotificationSupport() ||
+      Notification.permission !== 'granted'
+    ) {
       return;
     }
 
@@ -167,14 +189,7 @@ export class ReminderService {
     };
 
     try {
-      if ('serviceWorker' in navigator) {
-        const registration = await navigator.serviceWorker.getRegistration();
-        if (registration) {
-          await registration.showNotification(reminder.habitTitle, options);
-          return;
-        }
-      }
-      new Notification(reminder.habitTitle, options);
+      await this.notificationService.showWebNotification(reminder.habitTitle, options);
     } catch (error) {
       console.warn('Unable to deliver reminder notification', error);
     }
@@ -210,12 +225,21 @@ export class ReminderService {
   }
 
   private createTimestampTrigger(timestamp: number): unknown {
-    const TriggerCtor = (window as any).TimestampTrigger ?? (self as { TimestampTrigger?: any })?.TimestampTrigger;
+    const TriggerCtor =
+      (window as any).TimestampTrigger ?? (self as { TimestampTrigger?: any })?.TimestampTrigger;
     return TriggerCtor ? new TriggerCtor(timestamp) : null;
   }
 
-  private async cancelScheduledNotification(habitId: number, registration?: ServiceWorkerRegistration): Promise<void> {
-    const reg = registration ?? (await navigator.serviceWorker.getRegistration());
+  private async cancelScheduledNotification(
+    habitId: number,
+    registration?: ServiceWorkerRegistration
+  ): Promise<void> {
+    if (this.notificationService.isNativePlatform) {
+      await this.clearNativeReminderNotifications(habitId, true);
+      return;
+    }
+
+    const reg = registration ?? (await this.notificationService.getServiceWorkerRegistration());
     if (!reg?.getNotifications) {
       return;
     }
@@ -270,5 +294,137 @@ export class ReminderService {
     } catch {
       return [];
     }
+  }
+
+  private async initialize(): Promise<void> {
+    const permission = await this.notificationService.getPermission();
+    if (permission !== 'granted') {
+      return;
+    }
+
+    await this.applySchedules();
+    await this.dailyMotivationNotificationService.refreshSchedule();
+  }
+
+  private async clearAllScheduledNotifications(includeDelivered = false): Promise<void> {
+    this.clearScheduled();
+    await this.clearNativeReminderNotifications(undefined, includeDelivered);
+    await this.clearWebReminderNotifications();
+  }
+
+  private async clearWebReminderNotifications(): Promise<void> {
+    const registration = await this.notificationService.getServiceWorkerRegistration();
+    if (!registration?.getNotifications) {
+      return;
+    }
+
+    const notifications = await registration.getNotifications();
+    notifications
+      .filter((notification) => {
+        const data = (notification.data ?? null) as { habitId?: unknown } | null;
+        return (
+          (notification.tag?.startsWith('habit-') ?? false) || typeof data?.habitId === 'number'
+        );
+      })
+      .forEach((notification) => notification.close());
+  }
+
+  private async clearNativeReminderNotifications(
+    habitId?: number,
+    includeDelivered = false
+  ): Promise<void> {
+    if (!this.notificationService.isNativePlatform) {
+      return;
+    }
+
+    const pending = await this.notificationService.getPendingNativeNotifications();
+    const pendingIds = pending
+      .filter((notification) => this.matchesNativeReminderNotification(notification.extra, habitId))
+      .map((notification) => notification.id);
+    await this.notificationService.cancelNativeNotifications(pendingIds);
+
+    if (!includeDelivered) {
+      return;
+    }
+
+    const delivered = await this.notificationService.getDeliveredNativeNotifications();
+    const deliveredIds = delivered
+      .filter((notification) =>
+        this.matchesNativeReminderNotification(notification.data ?? notification.extra, habitId)
+      )
+      .map((notification) => notification.id);
+    await this.notificationService.removeDeliveredNativeNotifications(deliveredIds);
+  }
+
+  private matchesNativeReminderNotification(data: unknown, habitId?: number): boolean {
+    const payload = (data ?? null) as { type?: unknown; habitId?: unknown } | null;
+    if (payload?.type !== 'habit-reminder') {
+      return false;
+    }
+
+    return habitId === undefined || payload.habitId === habitId;
+  }
+
+  private async scheduleNativeReminder(reminder: ReminderEntry, immediate = false): Promise<void> {
+    const [hours, minutes] = reminder.schedule.time.split(':').map(Number);
+    if (!immediate && (Number.isNaN(hours) || Number.isNaN(minutes))) {
+      return;
+    }
+
+    await this.notificationService.ensureChannel({
+      id: this.reminderChannelId,
+      name: 'Habit reminders',
+      description: 'Scheduled reminders for your habits.',
+      importance: 4,
+      vibration: true
+    });
+
+    const activeDays = reminder.schedule.daysOfWeek.length
+      ? reminder.schedule.daysOfWeek
+      : [0, 1, 2, 3, 4, 5, 6];
+    const notifications = immediate
+      ? [
+          {
+            id: this.buildNativeNotificationId(reminder.habitId, 9),
+            title: reminder.habitTitle,
+            body: `Time to log ${reminder.habitTitle}. Tap to record your progress.`,
+            channelId: this.reminderChannelId,
+            ongoing: !!reminder.schedule.persistent,
+            autoCancel: !reminder.schedule.persistent,
+            extra: {
+              type: 'habit-reminder',
+              habitId: reminder.habitId,
+              preview: false
+            }
+          }
+        ]
+      : Array.from(new Set(activeDays)).map((dayOfWeek) => ({
+          id: this.buildNativeNotificationId(reminder.habitId, dayOfWeek),
+          title: reminder.habitTitle,
+          body: `Time to log ${reminder.habitTitle}. Tap to record your progress.`,
+          channelId: this.reminderChannelId,
+          ongoing: !!reminder.schedule.persistent,
+          autoCancel: !reminder.schedule.persistent,
+          schedule: {
+            on: {
+              weekday: this.notificationService.toNativeWeekday(dayOfWeek),
+              hour: hours,
+              minute: minutes
+            },
+            allowWhileIdle: true
+          },
+          extra: {
+            type: 'habit-reminder',
+            habitId: reminder.habitId,
+            dayOfWeek,
+            persistent: !!reminder.schedule.persistent
+          }
+        }));
+
+    await this.notificationService.scheduleNativeNotifications(notifications);
+  }
+
+  private buildNativeNotificationId(habitId: number, slot: number): number {
+    return 100000 + habitId * 10 + slot;
   }
 }

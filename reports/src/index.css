@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Accessible focus styles */
+:focus-visible {
+  outline: 2px solid theme('colors.brand.600');
+  outline-offset: 2px;
+}
+
+/* Color-blind-safe status colors */
+.status-completed { @apply bg-emerald-500; }
+.status-scheduled { @apply bg-slate-400; }
+.status-missed { @apply bg-rose-500; }
+.status-skipped { @apply bg-amber-500; }
+

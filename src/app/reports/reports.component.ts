@@ -4,15 +4,15 @@ import { Router, RouterLink } from '@angular/router';
 import { HabitService } from '../core/services/habit.service';
 import { LogService } from '../core/services/log.service';
 import { AnalyticsService, CompletionTrendPoint, HeatmapCell } from '../core/services/analytics.service';
-import { PageHeaderComponent } from '../shared/components/page-header/page-header.component';
+import { isLogCompleted } from '../core/utils/log-helpers';
+import { startOfDay, startOfWeek } from '../core/utils/date-utils';
 import { LoadingSkeletonComponent } from '../shared/components/loading-skeleton/loading-skeleton.component';
-import { MetricCardComponent } from '../shared/components/metric-card/metric-card.component';
+import { StatsStripComponent, StatItem } from '../shared/components/stats-strip/stats-strip.component';
 import { EmptyStateComponent } from '../shared/components/empty-state/empty-state.component';
 import { HeatmapCalendarComponent } from '../shared/components/heatmap-calendar/heatmap-calendar.component';
 import { TrendBarChartComponent } from '../shared/components/trend-bar-chart/trend-bar-chart.component';
-import { HabitCategoryChartComponent, CategorySlice } from '../shared/components/habit-category-chart/habit-category-chart.component';
-import { HabitInsightTableComponent, HabitInsightRow } from '../shared/components/habit-insight-table/habit-insight-table.component';
 import { Habit } from '../data/models/habit.model';
+import { LanguageService } from '../shared/services/language.service';
 
 interface HabitInsight {
   id: number;
@@ -33,23 +33,15 @@ type InsightFilter = 'all' | 'strong' | 'needs-attention';
     NgFor,
     AsyncPipe,
     DatePipe,
-    PageHeaderComponent,
     LoadingSkeletonComponent,
-    MetricCardComponent,
+    StatsStripComponent,
     EmptyStateComponent,
     HeatmapCalendarComponent,
     TrendBarChartComponent,
-    HabitCategoryChartComponent,
-    HabitInsightTableComponent,
     RouterLink
   ],
   template: `
-    <section class="space-y-6">
-      <app-page-header
-        title="Reports & Insights"
-        subtitle="Understand trends, consistency, and celebrate progress over time."
-        eyebrow="Analytics"
-      />
+    <section data-tour="reports-panel" class="space-y-6">
 
       <app-loading-skeleton *ngIf="isLoading()" [rows]="3" [height]="112"></app-loading-skeleton>
 
@@ -58,21 +50,69 @@ type InsightFilter = 'all' | 'strong' | 'needs-attention';
       </div>
 
       <ng-container *ngIf="!isLoading() && hasData()">
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <app-metric-card label="Active habits" [value]="activeHabitsCount()" hint="Currently tracking"></app-metric-card>
-          <app-metric-card label="Avg completion" [value]="averageCompletionRate() + '%'" hint="Across filtered range"></app-metric-card>
-          <app-metric-card label="Top streak" [value]="topStreakLabel()" hint="Best current run"></app-metric-card>
-          <app-metric-card label="Entries logged" [value]="totalLogEntries()" hint="Within filters"></app-metric-card>
-        </div>
+        <app-stats-strip [items]="statItems()" [highlightIndex]="1"></app-stats-strip>
 
         <div class="grid gap-6 lg:grid-cols-2">
-          <app-heatmap-calendar [cells]="heatmapCells()" title="Recent activity"></app-heatmap-calendar>
+          <app-trend-bar-chart [points]="dailyTrend()" title="Daily progress"></app-trend-bar-chart>
           <app-trend-bar-chart [points]="weeklyTrend()" title="Weekly completion"></app-trend-bar-chart>
         </div>
 
-        <div class="grid gap-6 lg:grid-cols-2">
-          <app-trend-bar-chart [points]="monthlyTrend()" title="Monthly averages"></app-trend-bar-chart>
-          <app-habit-category-chart [slices]="categorySlices()" [total]="categoryTotal()" title="Habit tags"></app-habit-category-chart>
+        <div *ngIf="false" class="grid gap-6 lg:grid-cols-1">
+          <section class="space-y-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 max-h-96 overflow-y-auto no-scrollbar">
+            <header class="flex items-center justify-between pb-8">
+              <div>
+                <h2 class="text-lg font-semibold">Focus habit</h2>
+                <p class="text-xs text-slate-500 dark:text-slate-300">Spotlight the habit with the strongest momentum.</p>
+              </div>
+              <button
+                *ngIf="focusHabit()"
+                type="button"
+                class="text-xs font-semibold text-primary hover:underline"
+                (click)="focusHabit() && goToHabit(focusHabit()!.id)"
+              >
+                View habit
+              </button>
+            </header>
+
+            <ng-container *ngIf="focusHabit(); else noFocus">
+              <div class="rounded-xl border border-slate-200 bg-slate-50/70 p-4 dark:border-slate-700 dark:bg-slate-800/70">
+                <h3 class="text-base font-semibold text-slate-900 dark:text-slate-50">
+                  {{ focusHabit()!.title }}
+                </h3>
+                <dl class="mt-4 grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <dt class="text-xs uppercase tracking-wide text-slate-500">Completion</dt>
+                    <dd class="text-lg font-semibold text-slate-900 dark:text-slate-200">
+                      {{ focusHabit()!.completionRate }}%
+                    </dd>
+                  </div>
+                  <div>
+                    <dt class="text-xs uppercase tracking-wide text-slate-500">Strength</dt>
+                    <dd class="text-lg font-semibold text-emerald-600 dark:text-emerald-400">
+                      {{ focusHabit()!.strength }}%
+                    </dd>
+                  </div>
+                  <div>
+                    <dt class="text-xs uppercase tracking-wide text-slate-500">Current streak</dt>
+                    <dd class="text-lg font-semibold text-slate-900 dark:text-slate-200">
+                      {{ focusHabit()!.streak }} days
+                    </dd>
+                  </div>
+                  <div *ngIf="focusHabitTags().length">
+                    <dt class="text-xs uppercase tracking-wide text-slate-500">Tags</dt>
+                    <dd class="text-sm text-slate-600 dark:text-slate-300">
+                      {{ focusHabitTags().join(', ') }}
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </ng-container>
+            <ng-template #noFocus>
+              <div class="rounded-xl border border-dashed border-slate-300 p-4 text-sm text-slate-500">
+                Log a few entries to spotlight a habit here.
+              </div>
+            </ng-template>
+          </section>
         </div>
 
         <div class="grid gap-6 lg:grid-cols-2">
@@ -82,36 +122,10 @@ type InsightFilter = 'all' | 'strong' | 'needs-attention';
                 <h2 class="text-lg font-semibold">Filters</h2>
                 <p class="text-xs text-slate-500 dark:text-slate-300">Compare performance across tags and time ranges.</p>
               </div>
-              <button
-                type="button"
-                class="rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-500 transition hover:border-primary hover:text-primary dark:border-slate-700 dark:text-slate-300"
-                (click)="resetFilters()"
-              >
-                Reset
-              </button>
+              
             </header>
 
             <div class="space-y-4">
-              <div>
-                <label class="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Time range</label>
-                <div class="mt-2 flex flex-wrap gap-2">
-                  <button
-                    *ngFor="let option of periodOptions"
-                    type="button"
-                    class="rounded-full border px-3 py-1 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
-                    [ngClass]="{
-                      'bg-primary/10': selectedPeriod() === option.value,
-                      'text-primary': selectedPeriod() === option.value,
-                      'border-primary': selectedPeriod() === option.value,
-                      'border-slate-200': selectedPeriod() !== option.value
-                    }"
-                    (click)="setPeriod(option.value)"
-                  >
-                    {{ option.label }}
-                  </button>
-                </div>
-              </div>
-
               <div>
                 <label class="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Tag</label>
                 <div class="mt-2 flex flex-wrap gap-2">
@@ -164,7 +178,7 @@ type InsightFilter = 'all' | 'strong' | 'needs-attention';
 
           <section class="space-y-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
             <header class="flex items-center justify-between">
-              <h2 class="text-lg font-semibold">Habit health</h2>
+                <h2 id="habit-health-title" class="text-lg font-semibold">Habit health</h2>
               <select
                 class="rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-500 dark:border-slate-700 dark:bg-slate-900"
                 [value]="selectedFilter()"
@@ -175,7 +189,8 @@ type InsightFilter = 'all' | 'strong' | 'needs-attention';
                 <option value="needs-attention">Needs attention</option>
               </select>
             </header>
-
+            <div class="my-8 border-t border-slate-200 dark:border-slate-700"></div>
+            <br>
             <ul class="space-y-3 text-sm">
               <li
                 *ngFor="let insight of filteredInsights()"
@@ -209,7 +224,7 @@ type InsightFilter = 'all' | 'strong' | 'needs-attention';
           </section>
         </div>
 
-        <app-habit-insight-table [rows]="insightRows()" (viewDetails)="goToHabit($event)"></app-habit-insight-table>
+        
       </ng-container>
     </section>
   `,
@@ -220,6 +235,7 @@ export class ReportsComponent {
   private readonly logService = inject(LogService);
   private readonly analyticsService = inject(AnalyticsService);
   private readonly router = inject(Router);
+  private readonly languageService = inject(LanguageService);
 
   readonly isLoading = computed(() => this.habitService.isLoading() || this.logService.isLoading());
   readonly habits = this.habitService.habits;
@@ -270,43 +286,80 @@ export class ReportsComponent {
 
   readonly activeHabitsCount = computed(() => this.matchingHabits().length);
   readonly totalLogEntries = computed(() => this.filteredLogs().length);
-  readonly averageCompletionRate = computed(() =>
-    this.analyticsService.calculateCompletionRate(this.filteredLogs())
-  );
+  readonly averageCompletionRate = computed(() => {
+    const trend = this.weeklyTrend();
+    if (!trend.length) {
+      return 0;
+    }
+    const total = trend.reduce((sum, p) => sum + p.value, 0);
+    return Math.round(total / trend.length);
+  });
 
   readonly heatmapCells = computed<HeatmapCell[]>(() =>
-    this.analyticsService.buildHeatmap(this.filteredLogs())
+    this.analyticsService.buildHeatmap(this.filteredLogs(), 7)
   );
 
-  readonly weeklyTrend = computed<CompletionTrendPoint[]>(() =>
-    this.analyticsService.buildWeeklyTrend(this.filteredLogs())
-  );
+  readonly statItems = computed<StatItem[]>(() => [
+    { label: 'Active habits', value: this.activeHabitsCount(), hint: 'Currently tracking' },
+    { label: 'Avg completion', value: `${this.averageCompletionRate()}%`, hint: 'Last 8 weeks' },
+    { label: 'Top streak', value: this.topStreakLabel(), hint: 'Best current run' },
+    { label: 'Entries logged', value: this.totalLogEntries(), hint: 'Within filters' }
+  ]);
+
+  readonly dailyTrend = computed<CompletionTrendPoint[]>(() => {
+    const logs = this.filteredLogs();
+    const habits = this.matchingHabits();
+    const trend: CompletionTrendPoint[] = [];
+    const today = startOfDay(new Date());
+    for (let i = 7 - 1; i >= 0; i--) {
+      const dayStart = startOfDay(new Date(today.getFullYear(), today.getMonth(), today.getDate() - i));
+      const dayEnd = new Date(dayStart.getFullYear(), dayStart.getMonth(), dayStart.getDate(), 23, 59, 59, 999);
+      const eligibleHabits = habits.filter((h) => new Date(h.createdDate) <= dayEnd && !h.archived);
+      const dayLogs = logs.filter((log) => {
+        const d = new Date(log.date);
+        return d >= dayStart && d <= dayEnd;
+      });
+      const rate = this.analyticsService.calculateMicroRateAgainstHabits(dayLogs, eligibleHabits, dayStart, dayEnd);
+      const label = dayStart.toLocaleDateString(this.languageService.language() === 'hu' ? 'hu-HU' : 'en-US', { weekday: 'short' });
+      trend.push({ label, value: rate });
+    }
+    return trend;
+  });
+
+  readonly weeklyTrend = computed<CompletionTrendPoint[]>(() => {
+    const logs = this.filteredLogs();
+    const habits = this.matchingHabits();
+    const trend: CompletionTrendPoint[] = [];
+    const now = new Date();
+    for (let i = 8 - 1; i >= 0; i--) {
+      const start = startOfWeek(new Date(now.getFullYear(), now.getMonth(), now.getDate() - i * 7));
+      const end = new Date(start);
+      end.setDate(end.getDate() + 6);
+
+      let scheduled = 0;
+      let completed = 0;
+      const cursor = new Date(start);
+      while (cursor <= end) {
+        const dayStart = new Date(cursor.getFullYear(), cursor.getMonth(), cursor.getDate());
+        const dayEnd = new Date(cursor.getFullYear(), cursor.getMonth(), cursor.getDate(), 23, 59, 59, 999);
+        const eligibleHabits = habits.filter((h) => new Date(h.createdDate) <= dayEnd && !h.archived);
+        scheduled += eligibleHabits.length;
+        completed += logs.filter((log) => {
+          const d = new Date(log.date);
+          return d >= dayStart && d <= dayEnd && isLogCompleted(log);
+        }).length;
+        cursor.setDate(cursor.getDate() + 1);
+      }
+
+      const rate = scheduled > 0 ? Math.round((completed / scheduled) * 100) : 0;
+      trend.push({ label: `${start.getMonth() + 1}/${start.getDate()}`, value: rate });
+    }
+    return trend;
+  });
 
   readonly monthlyTrend = computed<CompletionTrendPoint[]>(() =>
     this.analyticsService.buildMonthlyAverages(this.filteredLogs())
   );
-
-  readonly categorySlices = computed<CategorySlice[]>(() => {
-    const habits = this.matchingHabits();
-    if (!habits.length) {
-      return [];
-    }
-    const counts = new Map<string, number>();
-    for (const habit of habits) {
-      if (habit.tags?.length) {
-        habit.tags.forEach((tag) => counts.set(tag, (counts.get(tag) ?? 0) + 1));
-      } else {
-        counts.set('Untagged', (counts.get('Untagged') ?? 0) + 1);
-      }
-    }
-    return Array.from(counts.entries()).map(([label, value]) => ({
-      label,
-      value,
-      percentage: (value / habits.length) * 100
-    }));
-  });
-
-  readonly categoryTotal = computed(() => this.matchingHabits().length);
 
   readonly insights = computed<HabitInsight[]>(() =>
     this.matchingHabits()
@@ -340,8 +393,12 @@ export class ReportsComponent {
 
   readonly hasData = computed(() => this.matchingHabits().length > 0 && this.filteredLogs().length > 0);
 
+  // No goal-aware series used here; dailyTrend remains a plain per-day completion rate
+
   readonly topStreakLabel = computed(() => {
-    const data = this.filteredInsights();
+    // Always compute Top streak from time/tag filtered data only,
+    // ignoring the Habit health filter selection.
+    const data = this.insights();
     if (!data.length) {
       return '—';
     }
@@ -363,20 +420,16 @@ export class ReportsComponent {
     return data[0];
   });
 
-  readonly insightRows = computed<HabitInsightRow[]>(() =>
-    this.filteredInsights().map((insight) => {
-      const habit = this.matchingHabits().find((h) => h.id === insight.id);
-      return {
-        id: insight.id,
-        title: insight.title,
-        strength: insight.strength,
-        completionRate: insight.completionRate,
-        streak: insight.streak,
-        type: habit?.type ?? 'binary',
-        tags: habit?.tags ?? []
-      };
-    })
-  );
+  readonly focusHabitTags = computed(() => {
+    const focus = this.focusHabit();
+    if (!focus) {
+      return [];
+    }
+    const habit = this.matchingHabits().find((item) => item.id === focus.id);
+    return habit?.tags ?? [];
+  });
+
+  
 
   resetFilters(): void {
     this.selectedPeriod.set('30d');
@@ -423,6 +476,21 @@ export class ReportsComponent {
         return cutoff;
       default:
         return null;
+    }
+  }
+
+  private periodDays(): number {
+    switch (this.selectedPeriod()) {
+      case '7d':
+        return 7;
+      case '30d':
+        return 30;
+      case '90d':
+        return 90;
+      case '365d':
+        return 365;
+      default:
+        return 30;
     }
   }
 }

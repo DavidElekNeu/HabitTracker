@@ -60,6 +60,27 @@ export interface HabitSchedule {
   allowSkips?: boolean;
 }
 
+export type HabitChainRelation = 'before' | 'after';
+
+export type HabitChainTrigger = 'on_open' | 'on_complete';
+
+export interface HabitChainConditions {
+  onlyIfDue?: boolean;
+  withinMinutes?: number;
+  skipIfCompletedWithinHours?: number;
+}
+
+export interface HabitChainLink {
+  id: string;
+  targetHabitId: number;
+  relation: HabitChainRelation;
+  trigger?: HabitChainTrigger;
+  priority?: number;
+  note?: string;
+  conditions?: HabitChainConditions;
+  isActive?: boolean;
+}
+
 export interface Habit {
   id?: number;
   title: string;
@@ -71,6 +92,8 @@ export interface Habit {
   icon?: string;
   strategy?: HabitStrategy;
   reminderConfig?: ReminderConfig;
+  chainName?: string;
+  chainLinks?: HabitChainLink[];
   createdDate: string;
   archived?: boolean;
 }

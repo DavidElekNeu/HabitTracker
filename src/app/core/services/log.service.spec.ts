@@ -19,6 +19,16 @@ describe('LogService', () => {
     synced: overrides.synced ?? false
   });
 
+  const createDeferred = <T>() => {
+    let resolve!: (value: T | PromiseLike<T>) => void;
+    let reject!: (reason?: unknown) => void;
+    const promise = new Promise<T>((res, rej) => {
+      resolve = res;
+      reject = rej;
+    });
+    return { promise, resolve, reject };
+  };
+
   beforeEach(() => {
     dbServiceSpy = jasmine.createSpyObj<DBService>('DBService', [
       'getLogs',
@@ -102,6 +112,91 @@ describe('LogService', () => {
     const result = await service.incrementHabitLog(60, 3, { date: '2024-04-01' });
     expect(result.value).toBe(5);
     expect(service.getLogForDate(60, '2024-04-01')?.value).toBe(5);
+  });
+
+  it('serializes overlapping increment operations for the same day', async () => {
+    dbServiceSpy.getLogByHabitDay.and.resolveTo(undefined);
+    dbServiceSpy.updateLog.and.callFake(async (updated: HabitLog) => updated);
+
+    let resolveAdd: ((value: number) => void) | undefined;
+    const addPromise = new Promise<number>((resolve) => {
+      resolveAdd = resolve;
+    });
+    dbServiceSpy.addLog.and.returnValue(addPromise);
+
+    const first = service.incrementHabitLog(70, 1, { date: '2024-04-10' });
+    const second = service.incrementHabitLog(70, 1, { date: '2024-04-10' });
+
+    resolveAdd?.(11);
+
+    const firstResult = await first;
+    expect(firstResult.value).toBe(1);
+
+    dbServiceSpy.getLogByHabitDay.and.resolveTo(firstResult);
+
+    const secondResult = await second;
+    expect(secondResult.value).toBe(2);
+    expect(service.getLogForDate(70, '2024-04-10')?.value).toBe(2);
+    expect(dbServiceSpy.addLog).toHaveBeenCalledTimes(1);
+    expect(dbServiceSpy.updateLog).toHaveBeenCalledTimes(1);
+  });
+
+  it('retains local increments when loadAllLogs resolves with stale data', async () => {
+    const deferred = createDeferred<HabitLog[]>();
+    dbServiceSpy.getLogs.and.returnValue(deferred.promise);
+
+    const loadPromise = service.loadAllLogs();
+
+    dbServiceSpy.getLogByHabitDay.and.resolveTo(undefined);
+    dbServiceSpy.addLog.and.resolveTo(21);
+
+    await service.incrementHabitLog(80, 1, { date: '2024-08-01' });
+
+    const staleLog = createLog({
+      id: 21,
+      habitId: 80,
+      dayKey: '2024-08-01',
+      habitDayKey: '80::2024-08-01',
+      value: 1
+    });
+    dbServiceSpy.getLogByHabitDay.and.resolveTo(staleLog);
+    dbServiceSpy.updateLog.and.callFake(async (updated: HabitLog) => updated);
+
+    await service.incrementHabitLog(80, 1, { date: '2024-08-01' });
+    expect(service.getLogForDate(80, '2024-08-01')?.value).toBe(2);
+
+    deferred.resolve([staleLog]);
+
+    await loadPromise;
+
+    expect(service.getLogForDate(80, '2024-08-01')?.value).toBe(2);
+  });
+
+  it('prefers the most recent log when duplicates exist for a day', () => {
+    const early = createLog({
+      id: 13,
+      habitId: 90,
+      dayKey: '2024-08-01',
+      habitDayKey: '90::2024-08-01',
+      date: '2024-08-01T02:00:00Z',
+      value: 1
+    });
+    const later = createLog({
+      id: 14,
+      habitId: 90,
+      dayKey: '2024-08-01',
+      habitDayKey: '90::2024-08-01',
+      date: '2024-08-01T10:00:00Z',
+      value: 2
+    });
+    service['logsSignal'].set([early, later]);
+
+    expect(service.getLogForDate(90, '2024-08-01')?.value).toBe(2);
+    expect(service.getCompletedCount(90, 'day', new Date('2024-08-01T12:00:00Z'))).toBe(2);
+
+    const logs = service.getLogsForHabit(90);
+    expect(logs.length).toBe(1);
+    expect(logs[0].value).toBe(2);
   });
 
   it('deletes logs and updates signal', async () => {

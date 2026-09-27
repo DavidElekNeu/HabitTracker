@@ -1,6 +1,6 @@
 {
-  "name": "Habit Tracker",
-  "short_name": "Habits",
+  "name": "StriveUp",
+  "short_name": "StriveUp",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#111827",

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">StriveUp</string>
+    <string name="title_activity_main">StriveUp</string>
+    <string name="package_name">com.davidelek.striveup</string>
+    <string name="custom_url_scheme">com.davidelek.striveup</string>
+    <string name="widget_name">StriveUp Widget</string>
+    <string name="widget_title">StriveUp</string>
+    <string name="widget_subtitle">Tap to open your habits.</string>
+    <string name="widget_description">Quick launcher widget for your daily habit dashboard.</string>
+    <string name="widget_today_habits_name">Today habits</string>
+    <string name="widget_today_habits_description">Shows today\'s habits with quick complete actions.</string>
+    <string name="widget_daily_progress_name">Daily progress</string>
+    <string name="widget_daily_progress_description">Shows completed habits and daily progress.</string>
+    <string name="widget_streak_name">Streak</string>
+    <string name="widget_streak_description">Shows current and longest streak at a glance.</string>
+    <string name="widget_single_focus_name">Single habit focus</string>
+    <string name="widget_single_focus_description">Focus on one habit with a quick complete action.</string>
+    <string name="widget_weekly_name">Weekly consistency</string>
+    <string name="widget_weekly_description">Shows 7-day consistency trend and weekly percentage.</string>
+    <string name="widget_quick_add_name">Quick add</string>
+    <string name="widget_quick_add_description">Quick +1 updates for measurable habits.</string>
+
+</resources>

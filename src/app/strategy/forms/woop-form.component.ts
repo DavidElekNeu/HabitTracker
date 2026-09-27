@@ -7,7 +7,10 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
   standalone: true,
   imports: [ReactiveFormsModule, NgIf],
   template: `
-    <section class="space-y-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+    <section
+      class="space-y-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900"
+      [formGroup]="form"
+    >
       <header>
         <h3 class="text-base font-semibold">WOOP plan</h3>
         <p class="text-xs text-slate-500">
@@ -16,7 +19,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
       </header>
       <div class="grid gap-4">
         <label class="flex flex-col gap-2 text-sm font-medium">
-          Wish<span class="text-rose-500">*</span>
+          <span class="inline-flex items-center gap-1">Wish<span class="text-rose-500">*</span></span>
           <textarea
             rows="2"
             formControlName="wish"
@@ -28,7 +31,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
           </span>
         </label>
         <label class="flex flex-col gap-2 text-sm font-medium">
-          Outcome<span class="text-rose-500">*</span>
+          <span class="inline-flex items-center gap-1">Outcome<span class="text-rose-500">*</span></span>
           <textarea
             rows="2"
             formControlName="outcome"
@@ -37,7 +40,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
           ></textarea>
         </label>
         <label class="flex flex-col gap-2 text-sm font-medium">
-          Obstacle<span class="text-rose-500">*</span>
+          <span class="inline-flex items-center gap-1">Obstacle<span class="text-rose-500">*</span></span>
           <textarea
             rows="2"
             formControlName="obstacle"
@@ -46,7 +49,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
           ></textarea>
         </label>
         <label class="flex flex-col gap-2 text-sm font-medium">
-          If-Then Plan<span class="text-rose-500">*</span>
+          <span class="inline-flex items-center gap-1">If-Then Plan<span class="text-rose-500">*</span></span>
           <textarea
             rows="2"
             formControlName="plan"

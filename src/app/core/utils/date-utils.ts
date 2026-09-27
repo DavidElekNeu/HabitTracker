@@ -19,7 +19,10 @@ export function createHabitDayKey(habitId: number, dayKey: string): string {
 export function daysBetween(a: Date | string, b: Date | string): number {
   const start = startOfDay(toDate(a));
   const end = startOfDay(toDate(b));
-  return Math.abs(Math.floor((end.getTime() - start.getTime()) / MILLISECONDS_PER_DAY));
+  // Count calendar dates, not 24-hour intervals (DST days can be 23 or 25 hours).
+  const startDate = Date.UTC(start.getFullYear(), start.getMonth(), start.getDate());
+  const endDate = Date.UTC(end.getFullYear(), end.getMonth(), end.getDate());
+  return Math.abs((endDate - startDate) / MILLISECONDS_PER_DAY);
 }
 
 export function startOfDay(date: Date): Date {

@@ -19,14 +19,7 @@ export interface CategorySlice {
       </header>
       <div class="relative h-40 w-full max-w-[260px] self-center">
         <svg viewBox="0 0 36 36" class="h-full w-full">
-          <circle
-            cx="18"
-            cy="18"
-            r="16"
-            fill="none"
-            stroke="#e2e8f0"
-            stroke-width="4"
-          ></circle>
+          <circle cx="18" cy="18" r="16" fill="none" stroke="#e2e0d0" stroke-width="4"></circle>
           <ng-container *ngIf="slices.length; else emptySlice">
             <ng-container *ngFor="let slice of slices; let i = index">
               <circle
@@ -48,15 +41,7 @@ export interface CategorySlice {
         </div>
       </div>
       <ng-template #emptySlice>
-        <circle
-          cx="18"
-          cy="18"
-          r="16"
-          fill="none"
-          stroke="#6366f1"
-          stroke-width="4"
-          stroke-dasharray="0 100"
-        ></circle>
+        <circle cx="18" cy="18" r="16" fill="none" stroke="#d4a017" stroke-width="4" stroke-dasharray="0 100"></circle>
       </ng-template>
       <ul class="space-y-2 text-xs">
         <li *ngFor="let slice of slices; let i = index" class="flex items-center justify-between">
@@ -83,7 +68,7 @@ export class HabitCategoryChartComponent {
   @Input() title = 'Habit categories';
   @Input() total = 0;
 
-  readonly colors = ['#6366f1', '#22d3ee', '#f97316', '#10b981', '#facc15', '#ec4899'];
+  readonly colors = ['#d4a017', '#b37a1e', '#f0c867', '#8c6d1f', '#c97f5b', '#6a4f32'];
 
   computeOffset(index: number): number {
     const prior = this.slices.slice(0, index).reduce((sum, slice) => sum + slice.percentage, 0);

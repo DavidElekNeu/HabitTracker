@@ -127,19 +127,22 @@ export class HabitLogModalComponent implements OnChanges {
     if (!this.habit) {
       return [];
     }
+    if ((this.habit.schedule?.frequencyCount ?? 0) > 0) {
+      return [1];
+    }
     if (this.habit.type === 'quantitative') {
       const target = this.habit.schedule.dailyTargetValue ?? 4;
       const step = Math.max(1, Math.round(target / 4));
       return [step, step * 2, step * 3];
-    }
-    if (this.habit.type === 'frequency') {
-      return [1];
     }
     return [];
   }
 
   get inputStep(): number {
     if (!this.habit) {
+      return 1;
+    }
+    if ((this.habit.schedule?.frequencyCount ?? 0) > 0) {
       return 1;
     }
     if (this.habit.type === 'quantitative') {
